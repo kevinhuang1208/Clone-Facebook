@@ -9,29 +9,29 @@ FaceQuote, a social media app, is a website for users to share posts, see other 
 * Logged in users are directed to their home feed where posts made by other users are shown.
 * Logged out users are directed to a splash page asking them to login again.
 
-## 3. Posts
+## 2. Posts
 * Logged in users can submit posts with pictures/videos.
 * Logged in users can edit and delete their own posts.
 * All users can view other users' posts.
 
-## 4. Comments
+## 3. Comments
 * Logged in users can post comments on posts.
 * Logged in users can edit and delete their own comments.
 * All users can view the comments on a post
 
 # Future Features
-## 5. Friends
+## 4. Friends
 * Logged in users can friend and unfriend other users.
 * Logged in users can view their friends and who they are friends with.
 
-## 6. Likes
+## 5. Likes
 * Logged in users can like and unlike posts
 * Logged in users can like and unlike comments
 
-## 7. Messages
+## 6. Messages
 * Logged in users can message their friends via Websockets
 
 # Bonus Features
 
-## 8. Search
+## 7. Search
 * Logged in users can search other user's profiles and view them.
