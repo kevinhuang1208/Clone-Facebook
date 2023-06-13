@@ -1,20 +1,20 @@
 """empty message
 
-Revision ID: 014bd025d3ee
+Revision ID: f4be4337fab8
 Revises:
-Create Date: 2023-06-13 16:24:03.255874
+Create Date: 2023-06-13 17:35:24.696783
 
 """
 from alembic import op
 import sqlalchemy as sa
 
-
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
 
+
 # revision identifiers, used by Alembic.
-revision = '014bd025d3ee'
+revision = 'f4be4337fab8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,7 +37,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('status', sa.String(length=1000), nullable=False),
     sa.Column('upload', sa.String(length=500), nullable=False),
-    sa.Column('created_at', sa.Date(), nullable=False),
+    sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
@@ -46,7 +46,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=1000), nullable=False),
     sa.Column('upload', sa.String(length=500), nullable=False),
-    sa.Column('created_at', sa.Date(), nullable=False),
+    sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['post_id'], ['posts.id'], ),
