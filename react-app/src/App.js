@@ -6,6 +6,10 @@ import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 
+//<form action="/posts/new" method="POST" enctype="multipart/form-data">
+// THIS WILL NEED TO BE ON THE FORM
+
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
