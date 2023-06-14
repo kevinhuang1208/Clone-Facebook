@@ -88,8 +88,12 @@ def delete_post(id):
 
     post_to_delete = Post.query.get(id)
 
-    if post_to_delete is None:
-        return {'message': 'Post Not Found'}
-    db.session.delete(post_to_delete)
-    db.session.commit()
-    return {'message': 'Post deleted!'}
+    file_delete = remove_file_from_s3(post_to_delete.upload)
+
+    if file_delete:
+        db.session.delete(post_to_delete)
+        db.session.commit()
+        return {'message': 'Post deleted!'}
+
+    else:
+        return "Did not work."

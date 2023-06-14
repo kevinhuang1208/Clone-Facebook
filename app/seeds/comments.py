@@ -11,7 +11,7 @@ def seed_comments():
     comment2 = Comment(
         description='Embrace the journey of self-discovery and personal growth. Each step you take, no matter how small, brings you closer to becoming the best version of yourself.', created_at=date(2023, 2, 26), user_id=9, post_id=2)
     comment3 = Comment(
-        description='This has to be the great qutoe of all time!', created_at=date(2023, 2, 8), user_id=8, post_id=3)
+        description='This has to be the great quote of all time!', created_at=date(2023, 2, 8), user_id=8, post_id=3)
     comment4 = Comment(
         description='I solemnly swear that I agree with you.', created_at=date(2023, 3, 1), user_id=7, post_id=4)
     comment5 = Comment(

@@ -7,25 +7,25 @@ from datetime import date
 # Adds a demo user, you can add other users here if you want
 def seed_posts():
     post1 = Post(
-        status='"May the Force be with you." - Star Wars', upload='', created_at=date(2023, 1, 11), user_id=1)
+        status='"May the Force be with you." - Star Wars', upload='https://myfacequotebucket.s3.amazonaws.com/may-the-force.gif', created_at=date(2023, 1, 11), user_id=1)
     post2 = Post(
-        status='"To infinity and beyond!" - Toy Story', upload='', created_at=date(2023, 1, 17), user_id=2)
+        status='"To infinity and beyond!" - Toy Story', upload='https://myfacequotebucket.s3.amazonaws.com/to-inifinity.gif', created_at=date(2023, 1, 17), user_id=2)
     post3 = Post(
-        status='"Hasta la vista, baby." - Terminator 2: Judgment Day', upload='', created_at=date(2023, 2, 6), user_id=3)
+        status='"Hasta la vista, baby." - Terminator 2: Judgment Day', upload='https://myfacequotebucket.s3.amazonaws.com/hasta-la-vista.gif', created_at=date(2023, 2, 6), user_id=3)
     post4 = Post(
-        status='"I solemnly swear that I am up to no good." - Harry Potter series', upload='', created_at=date(2023, 2, 22), user_id=4)
+        status='"I solemnly swear that I am up to no good." - Harry Potter series', upload='https://myfacequotebucket.s3.amazonaws.com/nobueno.gif', created_at=date(2023, 2, 22), user_id=4)
     post5 = Post(
         status='"Why so serious?" - The Dark Knight', upload='https://myfacequotebucket.s3.amazonaws.com/why-so-serious.jpg', created_at=date(2023, 3, 3), user_id=5)
     post6 = Post(
-        status='"I feel the need...the need for speed!" - Top Gun', upload='', created_at=date(2023, 3, 11), user_id=6)
+        status='"I feel the need...the need for speed!" - Top Gun', upload='https://myfacequotebucket.s3.amazonaws.com/need-for-speed.gif', created_at=date(2023, 3, 11), user_id=6)
     post7 = Post(
-        status='"The only thing we have to fear is fear itself." - Franklin D. Roosevelt', upload='', created_at=date(2023, 4, 20), user_id=7)
+        status='"The only thing we have to fear is fear itself." - Franklin D. Roosevelt', upload='https://myfacequotebucket.s3.amazonaws.com/franklin-d.jpg', created_at=date(2023, 4, 20), user_id=7)
     post8 = Post(
-        status='"I have a dream." - Martin Luther King Jr.', upload='', created_at=date(2023, 4, 26), user_id=8)
+        status='"I have a dream." - Martin Luther King Jr.', upload='https://myfacequotebucket.s3.amazonaws.com/MLK.jpg', created_at=date(2023, 4, 26), user_id=8)
     post9 = Post(
-        status='"The greatest glory in living lies not in never falling, but in rising every time we fall." - Nelson Mandela', upload='', created_at=date(2023, 5, 12), user_id=9)
+        status='"The greatest glory in living lies not in never falling, but in rising every time we fall." - Nelson Mandela', upload='https://myfacequotebucket.s3.amazonaws.com/embrace-the-journey.jpg', created_at=date(2023, 5, 12), user_id=9)
     post10 = Post(
-        status='"The only way to do great work is to love what you do." - Steve Jobs', upload='', created_at=date(2023, 5, 19), user_id=10)
+        status='"The only way to do great work is to love what you do." - Steve Jobs', upload='https://myfacequotebucket.s3.amazonaws.com/inspirtation-butterfly.png', created_at=date(2023, 5, 19), user_id=10)
 
 
     db.session.add(post1)
