@@ -15,7 +15,7 @@ def seed_posts():
     post4 = Post(
         status='"I solemnly swear that I am up to no good." - Harry Potter series', upload='', created_at=date(2023, 2, 22), user_id=4)
     post5 = Post(
-        status='"Why so serious?" - The Dark Knight', upload='', created_at=date(2023, 3, 3), user_id=5)
+        status='"Why so serious?" - The Dark Knight', upload='https://myfacequotebucket.s3.amazonaws.com/why-so-serious.jpg', created_at=date(2023, 3, 3), user_id=5)
     post6 = Post(
         status='"I feel the need...the need for speed!" - Top Gun', upload='', created_at=date(2023, 3, 11), user_id=6)
     post7 = Post(
