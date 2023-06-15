@@ -1,5 +1,7 @@
 import { useHistory } from "react-router-dom";
 // import './index.css'
+import OpenModalButton from "../OpenModalButton";
+import EditPostFormModal from "../EditPostFormModal";
 
 
 function EachPost({ post }) {
@@ -17,7 +19,11 @@ function EachPost({ post }) {
     else
         return (
             <div className='postTileHomePage' onClick={handleClick}>
-
+                <OpenModalButton
+                    className='button'
+			        buttonText="Edit Post"
+			        modalComponent={<EditPostFormModal post={post}/>}
+		        />
                 <div className='postStatusDiv'>
                     {post.status}
                 </div>

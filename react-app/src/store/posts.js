@@ -1,7 +1,7 @@
-const GET_ALL_POSTS = "anime/getAllPosts"
-// const DELETE_ANIME = "anime/deleteAnime"
-const POST_POST = "anime/postPost"
-// const EDIT_ANIME = "anime/editAnime"
+const GET_ALL_POSTS = "posts/getAllPosts"
+// const DELETE_POSTS = "posts/deletePost"
+const POST_POST = "posts/postPost"
+const EDIT_POST = "posts/editPost"
 
 const postPost = (post) => {
     return {
@@ -10,29 +10,29 @@ const postPost = (post) => {
     }
 }
 
-// const editAnime = (animeEdit) => {
-//     return {
-//         type: EDIT_ANIME,
-//         payload: animeEdit
-//     }
-// }
+const editPost = (postEdit) => {
+    return {
+        type: EDIT_POST,
+        payload: postEdit
+    }
+}
 
-// export const editAnimeThunk = (animeId, anime) => async (dispatch) => {
-//     const res = await fetch(`/api/anime/${animeId}/edit`, {
-//         method: 'PUT',
-//         body: anime
-//     })
-//     const edited_data = await res.json()
-//     if (res.ok) {
-//         dispatch(editAnime(edited_data))
-//         return edited_data
-//         //this return will return the to_dict for the anime
-//     } else {
-//         return edited_data
-//         //this return will return errors key with [] value
-//     }
+export const editPostThunk = (postId, post) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${postId}/edit`, {
+        method: 'PUT',
+        body: post
+    })
+    const edited_data = await res.json()
+    if (res.ok) {
+        dispatch(editPost(edited_data))
+        return edited_data
+        //this return will return the to_dict for the anime
+    } else {
+        return edited_data
+        //this return will return errors key with [] value
+    }
 
-// }
+}
 
 export const postPostThunk = (post) => async (dispatch) => {
 
@@ -107,11 +107,11 @@ const PostsReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload
             return newState
         }
-        // case EDIT_ANIME: {
-        //     let newState = { ...state }
-        //     newState[action.payload.id] = action.payload
-        //     return newState
-        // }
+        case EDIT_POST: {
+            let newState = { ...state }
+            newState[action.payload.id] = action.payload
+            return newState
+        }
         // case DELETE_ANIME: {
         //     let newState = { ...state }
         //     delete newState[action.animeId]

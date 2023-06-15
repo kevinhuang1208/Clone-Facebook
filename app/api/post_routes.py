@@ -69,13 +69,19 @@ def edit_post(id):
 
     form = EditPostForm()
 
+    if form.data["upload"]:
+        awsupload = form.data['upload']
+        awsupload.filename = get_unique_filename(awsupload.filename)
+        uploaded_upload = upload_file_to_s3(awsupload)
+        aws_link = uploaded_upload['url']
+
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
         post.status = form.data["status"]
-        post.upload = form.data["upload"]
-        # if len(aws_link) > 0:
-        #     post.cover_picture = aws_link
+        if len(aws_link) > 0:
+            post.upload = aws_link
+        # print("THIS IS POST UPLOAD INSIDE ROUTES", post.upload)
         db.session.commit()
         edited_post = post.to_dict()
         return edited_post
