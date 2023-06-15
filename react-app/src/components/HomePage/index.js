@@ -15,11 +15,6 @@ function HomePage() {
   const user = useSelector((state) => state.session.user)
   console.log("THIS IS POSTS", posts)
   console.log("THIS IS USERS", user)
-//   let animeIds = []
-//   if(user){
-//     animeIds = user.favorites
-//     animeIds = Object.values(animeIds)
-//   }
 
   useEffect(() => {
     dispatch(getAllPostsThunk())
@@ -27,10 +22,14 @@ function HomePage() {
     //   dispatch(getSingleUserThunk(user.id))
     // }
   }, [dispatch])
-//   // console.log(user)
-//   // console.log(animeIds)
-//   // console.log(animeIds.length)
+
   const postsArr = Object.values(posts)
+  postsArr.reverse()
+
+  if (!user) {
+    history.push("/landing")
+  }
+
     return (
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>

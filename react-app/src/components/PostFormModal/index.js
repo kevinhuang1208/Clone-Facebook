@@ -18,36 +18,20 @@ function useForceUpdate(){
 const PostFormModal = () => {
     const history = useHistory()
     const dispatch = useDispatch()
-    const forceUpdate = useForceUpdate();
+    // const forceUpdate = useForceUpdate();
     const { closeModal } = useModal();
     const [status, setStatus] = useState('')
     const [upload, setUpload] = useState(undefined)
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
-    // const { animeId } = useParams();
 
-    const userId = useSelector(state => state.session.user)
-    const allPosts = useSelector(state => state.posts)
-    // const anime = allAnime.animeId
+    // const userId = useSelector(state => state.session.user)
+    // const allPosts = useSelector(state => state.posts)
+
     useEffect(() => {
         dispatch(getAllPostsThunk())
     }, [dispatch])
 
-    // const anime = allAnime[animeId]
-    // if (!anime) {
-    //     return (
-    //         <h3> Loading... </h3>
-    //     )
-    // }
-
-    // const resetFile = (e) => {
-    //     console.log("this isisi siis is hit")
-    //     console.log("e.target -> ", e.target)
-    //     // console.log("e.target -> ",e.tar)
-    //     // e.target.files[0] = null
-    //     e.preventDefault()
-    //     setVideoLink(undefined)
-    // }
     const formValidate = () => {
         const newFormErrors = {}
         if (!status || status.length > 1000) {
@@ -70,32 +54,21 @@ const PostFormModal = () => {
 
         const res = await dispatch(postPostThunk(formData))
         if (res.errors) {
-            // console.log('inside if cond',res.errors)
             setErrors(res.errors)
-            // console.log('errors state', errors)
             return
         }
         else {
-            await closeModal
-            return forceUpdate
+            closeModal()
         }
-        // }
 
 
     }
-    // useEffect(() => {
-    //     dispatch(getAllAnimeThunk())
-    // }, [dispatch])
-
-    // useEffect(() => {
-    //     // console.log(videoLink)
-    // }, [episodeNum, description, releaseDate, videoLink])
 
     return (
-        <div className="createAnimeFormContainer">
+        <div className="createPostFormContainer">
             <h1 className="formHeader">Create Post</h1>
             {submitted ? (
-                <h2 className='episode-form-loading'>Uploading... please wait</h2>
+                <h2 className='post-form-loading'>Uploading... please wait</h2>
             ) : null}
             {errors.length ?
                 <ul>

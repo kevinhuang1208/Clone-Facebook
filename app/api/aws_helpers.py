@@ -3,7 +3,7 @@ import botocore
 import os
 import uuid
 # uuid creates unique hashes so users dont name a file the same name
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "mp4", "mov"}
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "mp4"}
 
 BUCKET_NAME = os.environ.get("S3_BUCKET")
 S3_LOCATION = f"http://{BUCKET_NAME}.s3.amazonaws.com/"
