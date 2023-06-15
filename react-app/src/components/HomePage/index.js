@@ -5,7 +5,7 @@ import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import PostFormModal from '../PostFormModal';
 import { getAllPostsThunk } from '../../store/posts';
-import eachPost from './eachPost';
+import EachPost from './eachPost';
 
 
 function HomePage() {
@@ -48,7 +48,7 @@ function HomePage() {
             <div className = 'allPostsContainer'>
                 {
                     postsArr.map(post => (
-                    <eachPost key ={post.id} post={post} />
+                    <EachPost key={post.id} post = {post}/>
                         ))
                 }
         </div>

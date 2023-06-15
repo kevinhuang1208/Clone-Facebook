@@ -2,7 +2,7 @@ import { useHistory } from "react-router-dom";
 // import './index.css'
 
 
-function eachPost({ post }) {
+function EachPost({ post }) {
     const history = useHistory();
 
     const handleClick = () => {
@@ -20,11 +20,13 @@ function eachPost({ post }) {
                     {post.status}
                 </div>
                 <div className="postUploadDiv">
-                    {post.upload}
+                {post.upload.substr(post.upload.length - 3) == "gif" || "png" || "jpg" || "peg" ?
+                <img src={post.upload}/> : <>bye</>
+                }
                 </div>
 
             </div>
         )
 }
 
-export default eachPost
+export default EachPost;
