@@ -1,0 +1,12 @@
+.postTileHomePage {
+    width: 680px;
+    max-height: 831px;
+    margin-bottom: 50px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.postUploadDiv > img {
+    max-width: 680px;
+    max-height: 625px;
+}

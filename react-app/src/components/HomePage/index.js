@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import PostFormModal from '../PostFormModal';
 import { getAllPostsThunk } from '../../store/posts';
 import EachPost from './eachPost';
+import "./HomePage.css"
 
 
 function HomePage() {
@@ -13,8 +14,8 @@ function HomePage() {
   const history = useHistory()
   const posts = useSelector((state) => state.posts)
   const user = useSelector((state) => state.session.user)
-  console.log("THIS IS POSTS", posts)
-  console.log("THIS IS USERS", user)
+  // console.log("THIS IS POSTS", posts)
+  // console.log("THIS IS USERS", user)
 
   useEffect(() => {
     dispatch(getAllPostsThunk())
@@ -33,7 +34,7 @@ function HomePage() {
     return (
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>
-
+          there is content in here
         </div>
         <div className='main-section'>
             <div className='new-post'>
@@ -53,7 +54,7 @@ function HomePage() {
         </div>
         </div>
         <div className='right-sidebar'>
-
+              there's also content in here
         </div>
       </div>
     )

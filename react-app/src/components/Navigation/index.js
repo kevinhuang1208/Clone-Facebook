@@ -8,9 +8,11 @@ function Navigation({ isLoaded }){
 	const sessionUser = useSelector(state => state.session.user);
 
 	return (
-		<ul>
+		<ul className='nav-bar'>
 			<li>
-				<NavLink exact to="/">Home</NavLink>
+				<NavLink exact to="/">
+					<img src='https://cdn.discordapp.com/attachments/1117948168353628201/1118958833050587306/facequote-low-resolution-logo-color-on-transparent-background.png'/>
+				</NavLink>
 			</li>
 			{isLoaded && (
 				<li>

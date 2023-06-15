@@ -1,5 +1,5 @@
 const GET_ALL_POSTS = "posts/getAllPosts"
-// const DELETE_POSTS = "posts/deletePost"
+const DELETE_POST = "posts/deletePost"
 const POST_POST = "posts/postPost"
 const EDIT_POST = "posts/editPost"
 
@@ -48,14 +48,12 @@ export const postPostThunk = (post) => async (dispatch) => {
     return data
 }
 
-// const deleteAnime = (animeId) => {
-//     return {
-//         type: DELETE_ANIME,
-//         animeId
-//     }
-// }
-// // need to get our anime to have a cascading delete before we implement delete anime
-
+const deletePost = (postId) => {
+    return {
+        type: DELETE_POST,
+        postId
+    }
+}
 const getAllPosts = (post) => {
     return {
         type: GET_ALL_POSTS,
@@ -63,17 +61,16 @@ const getAllPosts = (post) => {
     }
 }
 
-// export const deleteAnimeThunk = (animeId) => async (dispatch) => {
-//     // const response = await fetch('/api/anime/')
-//     const res = await fetch(`/api/anime/${animeId}`, {
-//         method: 'DELETE'
-//     })
-//     if (res.ok) {
-//         dispatch(deleteAnime(animeId))
-//     } else {
-//         return false
-//     }
-// }
+export const deletePostThunk = (postId) => async (dispatch) => {
+    const res = await fetch(`/api/posts/${postId}`, {
+        method: 'DELETE'
+    })
+    if (res.ok) {
+        dispatch(deletePost(postId))
+    } else {
+        return false
+    }
+}
 
 export const getAllPostsThunk = () => async (dispatch) => {
     const response = await fetch('/api/posts')
@@ -112,11 +109,11 @@ const PostsReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload
             return newState
         }
-        // case DELETE_ANIME: {
-        //     let newState = { ...state }
-        //     delete newState[action.animeId]
-        //     return newState
-        // }
+        case DELETE_POST: {
+            let newState = { ...state }
+            delete newState[action.postId]
+            return newState
+        }
         default:
             return state
     }
