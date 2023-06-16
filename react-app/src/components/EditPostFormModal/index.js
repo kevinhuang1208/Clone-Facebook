@@ -21,12 +21,14 @@ const EditPostFormModal = ({post}) => {
     // const forceUpdate = useForceUpdate();
     const { closeModal } = useModal();
     const [status, setStatus] = useState(post?.status)
-    const [upload, setUpload] = useState(undefined)
+    const [upload, setUpload] = useState(post?.upload)
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 
     // const userId = useSelector(state => state.session.user)
     // const allPosts = useSelector(state => state.posts)
+
+    // console.log("THIS IS POST UPLOAD", post.upload)
 
     useEffect(() => {
         dispatch(getAllPostsThunk())
@@ -89,7 +91,7 @@ const EditPostFormModal = ({post}) => {
 
                 <div className='file-in-edit'>
                     <p>
-                        Current attachment below. Please upload another file if you would like to overwrite this attachment.
+                        Current attachment below. Please upload another file if you would like to overwrite this attachment. <b>Please upload the same image if you don't wish to change it</b>
                     </p>
                     {post.upload.substr(post.upload.length - 3) === "mp4" ?
                         <video width='700px' height = '400px' controls controlsList="nodownload">
@@ -107,6 +109,7 @@ const EditPostFormModal = ({post}) => {
                         type="file"
                         accept='.png, .jpg, .jpeg, .gif, .mp4, .mov'
                         filename={upload && upload.name}
+                        // value={post.upload}
                         onChange={(e) => setUpload(e.target.files[0])}
                     />
                 </label>

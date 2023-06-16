@@ -5,6 +5,7 @@ import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import PostFormModal from '../PostFormModal';
 import { getAllPostsThunk } from '../../store/posts';
+import { getPostCommentsThunk } from '../../store/comments';
 import EachPost from './eachPost';
 import "./HomePage.css"
 

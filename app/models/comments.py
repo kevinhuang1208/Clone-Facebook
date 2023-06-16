@@ -19,9 +19,14 @@ class Comment(db.Model):
     commentuserid = db.relationship("User", back_populates = 'comment')
 
     def to_dict(self):
+
+        user = User.query.get(self.user_id)
+
         return {
             'id': self.id,
             'description': self.description,
+            'userFirstName': user.firstname,
+            'userLastName': user.lastname,
             'createdAt': self.created_at,
             'postId': self.post_id,
             'userId': self.user_id

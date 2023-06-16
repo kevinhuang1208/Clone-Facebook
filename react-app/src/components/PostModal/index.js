@@ -1,39 +1,38 @@
 import { useHistory } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 import OpenModalButton from "../OpenModalButton";
 import EditPostFormModal from "../EditPostFormModal";
 import DeletePostModal from "../DeletePostModal";
-import './eachPost.css'
-import PostModal from "../PostModal";
+import '../HomePage/eachPost.css'
+import CommentComponent from "./CommentComponent";
 import { getPostCommentsThunk } from "../../store/comments";
+import { getAllPostsThunk } from "../../store/posts";
 
 
-function EachPost({ post }) {
-    const history = useHistory();
-    const dispatch = useDispatch()
+function PostModal({ post }) {
+    const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
-    console.log("THIS IS POST", post)
+    // console.log("THIS IS POST", post)
+
+    const comments = post.comments
+    // console.log("WILL THERE BE COMMENTS IN HERE",  comments[0])
 
     useEffect(() => {
+        dispatch(getAllPostsThunk())
         dispatch(getPostCommentsThunk(post.id))
-
       }, [dispatch])
+    // const handleClick = () => {
+    //     history.push(`/`)
+    //     // history.push(`/posts/${post.id}`)
+    // }
 
-
-    const handleClick = () => {
-        history.push(`/`)
-        // history.push(`/posts/${post.id}`)
-    }
-
-    // console.log("THIS IS EACH IMG/VID", post.upload.substr(post.upload.length - 3))
-    // console.log("THIS IS POST.UPLOAD", post.upload)
 
     if (!post) return null
 
     else
         return (
-            <div className='postTileHomePage' onClick={handleClick}>
+            <div className='postTileHomePage'>
                 {user.id == post.userId ?
                     <div>
                     <OpenModalButton
@@ -63,13 +62,18 @@ function EachPost({ post }) {
                 <div className="commentCount">
                     This is the comment count: {post.commentCount}
                 </div>
-                <OpenModalButton
-                    className='comments'
-			        buttonText="Comment"
-			        modalComponent={<PostModal post={post}/>}
-		        />
+                <div className="comments">
+                { comments.map(comment => (
+                    <div>
+                        <div>{comment.userFirstName}{comment.userLastName}</div>
+                        <div>{comment.description}</div>
+                    </div>
+                ))
+                }
+                <CommentComponent key={post.id} post={post}/>
+                </div>
             </div>
         )
 }
 
-export default EachPost;
+export default PostModal;

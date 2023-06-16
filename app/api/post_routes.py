@@ -3,7 +3,9 @@ from flask_login import login_required, current_user
 from app.models import User
 from app.models.db import db
 from app.models.posts import Post
+from app.models.comments import Comment
 from app.forms.post_form import PostForm
+from app.forms.comment_form import CommentForm
 from app.forms.edit_post_form import EditPostForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
@@ -103,3 +105,72 @@ def delete_post(id):
 
     else:
         return "Did not work."
+
+
+@post_routes.route("/<int:id>/comments")
+def get_post_comments(id):
+    """Route to get comments for a specific post"""
+
+    post_comments = Comment.query.filter(Comment.post_id == id).all()
+    if post_comments:
+        res = []
+        for comment in post_comments:
+            commentDict = comment.to_dict()
+            commentDict["user"] = comment.commentuserid.to_dict()
+            res.append(commentDict)
+        return {"comments": res}
+    else:
+        return {"comments": []}
+
+@post_routes.route("/<int:id>/comments/new", methods=["POST"])
+def post_post_comment(id):
+    """Route to post a comment on a post"""
+    user_id = current_user.id
+    post_id=id
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_comment = Comment(
+            user_id=user_id,
+            post_id=post_id,
+            description=form.data["description"]
+        )
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict()
+    else:
+        return jsonify({'error': form.errors})
+
+
+
+
+@post_routes.route("/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
+def edit_comment_route(post_id, comment_id):
+    """Route to edit a comment"""
+    # user_id = current_user.id
+    comment = Comment.query.get(comment_id)
+    form = CommentForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        comment.description = form.data["description"]
+        db.session.commit()
+        edited_comment = comment.to_dict()
+        return edited_comment
+    else:
+        return {'error': form.errors}
+
+
+
+
+@post_routes.route('/<int:post_id>/comments/<int:comment_id>/delete',methods =['DELETE'])
+def delete_review_route(post_id, comment_id):
+    # print('what is this even working')
+    comment_to_delete = Comment.query.get(comment_id)
+    # print('------comment to delete------',comment_to_delete)
+
+    if comment_to_delete is None:
+        return {'message': 'Comment cannot be found'}
+
+    db.session.delete(comment_to_delete)
+    db.session.commit()
+    return {'message': 'Comment deleted!'}

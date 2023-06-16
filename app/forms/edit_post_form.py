@@ -10,4 +10,4 @@ class EditPostForm(FlaskForm):
     """Form to edit a Post page"""
     status = StringField('status', validators=[DataRequired()])
     # upload = StringField('upload', validators=[DataRequired()])
-    upload = FileField('upload', validators=[FileRequired(),FileAllowed(list(ALLOWED_EXTENSIONS))])
+    upload = FileField('upload', validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
