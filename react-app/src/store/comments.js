@@ -16,17 +16,12 @@ export const postPostCommentThunk = (comment, postId) => async (dispatch) =>{
         body: comment
     })
     const data = await response.json()
-    // console.log("-----------")
-    // console.log(data)
-    // console.log("-----------")
+
     if(response.ok){
         dispatch(postPostComment(data))
         return data
     }
-    // console.log("episode POST response NOT ok")
-    // console.log("response: ",response)
-    // console.log("---------------")
-    // console.log("data: ",data)
+
     return null
 }
 
@@ -43,9 +38,7 @@ export const editPostCommentThunk = (comment,postId,commentId) => async (dispatc
         body: comment
     })
     const data = await response.json()
-    // console.log("-----------")
-    // console.log(data)
-    // console.log("-----------")
+
     if(response.ok){
         dispatch(editPostComment(data))
         return data
@@ -62,48 +55,41 @@ const getPostComments = (comments) => {
 }
 
 export const getPostCommentsThunk = (postId) => async (dispatch) =>{
-    // console.log('is this even working---------------------')
+
     const response = await fetch(`/api/posts/${postId}/comments`)
     const data = await response.json()
-    // console.log("-----------")
-    // console.log('what is data',data)
-    // console.log("-----------")
+
     if(response.ok){
         const commentsObj = {}
-        // console.log(typeof data.comments)
-        // if(typeof data.comments == "Object")
+
         data.comments.forEach((comment) => {
             commentsObj[comment.id] = comment
         })
         dispatch(getPostComments(commentsObj))
         return commentsObj
     }
-    // console.log("reviews response NOT ok")
-    // console.log("response: ",response)
-    // console.log("---------------")
-    // console.log("data: ",data)
+
     return null
 }
 
-// const deleteAnimeReview = (reviewId) => {
-//     return{
-//         type: DELETE_ANIME_REVIEW,
-//         reviewId
-//     }
+const deletePostComment = (commentId) => {
+    return{
+        type: DELETE_POST_COMMENT,
+        commentId
+    }
 
-// }
+}
 
-// export const deleteAnimeReviewThunk = (reviewId) => async(dispatch)=>{
+export const deletePostCommentThunk = (postId, commentId) => async(dispatch)=>{
 
-//     // console.log('is thunk hitting?')
-//     const res = await fetch(`/api/anime/reviews/${reviewId}/delete`,{
-//         method: 'DELETE'
-//     })
-//     if(res.ok){
-//         dispatch(deleteAnimeReview(reviewId))
-//     }
-//     return'wtf what is happening'
-// }
+    const res = await fetch(`/api/posts/${postId}/comments/${commentId}/delete`,{
+        method: 'DELETE'
+    })
+    if(res.ok){
+        dispatch(deletePostComment(commentId))
+    }
+    return null
+}
 
 
 
@@ -130,11 +116,11 @@ const postCommentsReducer = (state = initialState, action) => {
             newState[action.payload.id] = action.payload
             return newState
         }
-        // case DELETE_ANIME_REVIEW:{
-        //     let newState={...state}
-        //     delete newState[action.reviewId]
-        //     return newState
-        // }
+        case DELETE_POST_COMMENT:{
+            let newState={...state}
+            delete newState[action.commentId]
+            return newState
+        }
         default:
             return state
     }
