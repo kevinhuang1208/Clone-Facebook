@@ -73,11 +73,11 @@ function PostModal({ post }) {
                 <div className="comments">
                 { posts[post.id].comments.map(comment => {
                     return (
-                    <EachComment key={post} post={post} comment={comment}/>
+                    <EachComment key={post.id} post={post} comment={comment}/>
                     )
                 })}
 
-                    <CommentComponent key={post} post={post}/>
+                    <CommentComponent key={post.id} post={post}/>
                 </div>
                 </div>
 

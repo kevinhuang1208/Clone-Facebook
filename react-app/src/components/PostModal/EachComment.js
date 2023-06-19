@@ -38,7 +38,6 @@ function EachComment({post, comment}) {
         await setShowResults(!showResults)
     }
     const onClickDelete = async () => {
-        await setDescription(comment.description)
         await setShowDelete(!showDelete)
     }
     return (
@@ -49,6 +48,8 @@ function EachComment({post, comment}) {
         {user.id === comment.userId ?
          <div>
             { showResults ?
+
+            <div>
             <form onSubmit={handleSubmit}>
             <input
                 placeholder={comment.description}
@@ -58,19 +59,27 @@ function EachComment({post, comment}) {
             />
             <button disabled={!description}>Change your comment</button>
             </form>
+            <button onClick={onClick}>I change my mind</button>
+            </div>
              : <>{comment.description}</> }
+
             { showDelete ?
+            <div>
             <form onSubmit={handleClick}>
             <div>Are you sure you want to delete this comment?</div>
             <button>Delete this comment</button>
             </form>
+            <button onClick={onClickDelete}>I change my mind</button>
+            </div>
              : <></> }
+
             { !showResults ?
             <button onClick={onClick}>Edit</button>
-            : <button onClick={onClick}>I change my mind</button> }
+            : null }
+
             { !showDelete ?
             <button onClick={onClickDelete}>Delete Comment</button>
-            : <button onClick={onClickDelete}>I change my mind</button> }
+            : null }
         </div>
         :
 
