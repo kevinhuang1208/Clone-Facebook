@@ -21,7 +21,7 @@ const EditPostFormModal = ({post}) => {
     // const forceUpdate = useForceUpdate();
     const { closeModal } = useModal();
     const [status, setStatus] = useState(post?.status)
-    const [upload, setUpload] = useState(post?.upload)
+    const [upload, setUpload] = useState("")
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 

@@ -1,8 +1,34 @@
+import { getAllPostsThunk } from "./posts"
+
+const GET_ALL_COMMENTS = "post/getAllComments"
 const GET_POST_COMMENTS = "post/getPostComments"
 const POST_POST_COMMENT = "post/postComment"
 const EDIT_POST_COMMENT = "post/editComment"
 const DELETE_POST_COMMENT = "post/deleteComment"
 
+const getAllComments = (comment) => {
+    return {
+        type: GET_ALL_COMMENTS,
+        payload: comment
+    }
+}
+
+export const getAllCommentsThunk = () => async (dispatch) => {
+    const response = await fetch('/api/posts/comments')
+
+    const data = await response.json()
+
+    if (response.ok) {
+        const normalComment = {}
+        data.comments.forEach((e) => {
+            normalComment[e.id] = e
+        })
+        dispatch(getAllComments(normalComment))
+
+        return normalComment
+    }
+    return null
+}
 const postPostComment = (comment) => {
     return {
         type: POST_POST_COMMENT,
@@ -19,6 +45,7 @@ export const postPostCommentThunk = (comment, postId) => async (dispatch) =>{
 
     if(response.ok){
         dispatch(postPostComment(data))
+        dispatch(getAllPostsThunk())
         return data
     }
 
@@ -87,6 +114,7 @@ export const deletePostCommentThunk = (postId, commentId) => async(dispatch)=>{
     })
     if(res.ok){
         dispatch(deletePostComment(commentId))
+        dispatch(getAllPostsThunk())
     }
     return null
 }
@@ -101,6 +129,15 @@ const initialState = {}
 
 const postCommentsReducer = (state = initialState, action) => {
     switch(action.type){
+        case GET_ALL_COMMENTS: {
+            let newState = { ...state }
+            const commentsState = {}
+            Object.values(action.payload).map((comment) => {
+                commentsState[comment.id] = comment;
+            })
+            newState = commentsState
+            return newState
+        }
         case GET_POST_COMMENTS:{
             let newState = {}
             newState = {...action.payload}

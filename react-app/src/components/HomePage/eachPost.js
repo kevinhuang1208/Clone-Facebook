@@ -7,18 +7,19 @@ import DeletePostModal from "../DeletePostModal";
 import './eachPost.css'
 import PostModal from "../PostModal";
 import { getPostCommentsThunk } from "../../store/comments";
+import { getAllPostsThunk } from "../../store/posts";
 
 
 function EachPost({ post }) {
     const history = useHistory();
     const dispatch = useDispatch()
     const user = useSelector((state) => state.session.user)
-    console.log("THIS IS POST", post)
+    // console.log("THIS IS POST", post)
 
-    useEffect(() => {
-        dispatch(getPostCommentsThunk(post.id))
+    // useEffect(() => {
+    //     dispatch(getPostCommentsThunk(post.id))
 
-      }, [dispatch])
+    //   }, [dispatch])
 
 
     const handleClick = () => {
@@ -34,7 +35,7 @@ function EachPost({ post }) {
     else
         return (
             <div className='postTileHomePage' onClick={handleClick}>
-                {user.id == post.userId ?
+                {user && user.id == post.userId ?
                     <div>
                     <OpenModalButton
                     className='button'

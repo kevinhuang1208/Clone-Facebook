@@ -7,26 +7,76 @@ import "./SignupForm.css";
 function SignupFormModal() {
 	const dispatch = useDispatch();
 	const [email, setEmail] = useState("");
-	const [username, setUsername] = useState("");
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
+	//
+	const validEmail = new RegExp(
+		'^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
+	 );
+
+
+	// const [emailErr, setEmailErr] = useState(false);
+    // const validate = (email) => {
+    //   if (!validEmail.test(email)) {
+    //      setEmailErr(true);
+    //   }
+	// }
+   //
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
-			if (data) {
-				setErrors(data);
-			} else {
-				closeModal();
-			}
-		} else {
+		// validate(email);
+		// if (emailErr) {
+		// 	setErrors([
+		// 		"Email must be formatted correctly"
+		// 	])
+		// 	setEmailErr(false)
+		// 	return
+		// }
+		if (!validEmail.test(email)) {
+			setErrors([
+				"Email must be in valid format!"
+			]);
+			return
+		 }
+		if(password.length < 4 || confirmPassword.length < 4) {
+			setErrors([
+				"Password must be more than 3 characters!"
+			])
+			return
+		}
+		if(password.length > 20 || confirmPassword.length > 20) {
+			setErrors([
+				"Password cannot exceed 20 characters!"
+			])
+			return
+		}
+		if (password !== confirmPassword) {
 			setErrors([
 				"Confirm Password field must be the same as the Password field",
 			]);
+			return
 		}
+		setErrors([]);
+		await dispatch(signUp(firstName, lastName, email, password));
+		closeModal();
+
+		// if (password === confirmPassword) {
+		// 	const data = await dispatch(signUp(firstName, lastName, email, password));
+		// 	if (data) {
+		// 		setErrors(data);
+		// 	} else {
+		// 		closeModal();
+		// 	}
+		// } else {
+		// 	setErrors([
+		// 		"Confirm Password field must be the same as the Password field",
+		// 	]);
+		// }
 	};
 
 	return (
@@ -48,11 +98,20 @@ function SignupFormModal() {
 					/>
 				</label>
 				<label>
-					Username
+					First Name
 					<input
 						type="text"
-						value={username}
-						onChange={(e) => setUsername(e.target.value)}
+						value={firstName}
+						onChange={(e) => setFirstName(e.target.value)}
+						required
+					/>
+				</label>
+				<label>
+					Last Name
+					<input
+						type="text"
+						value={lastName}
+						onChange={(e) => setLastName(e.target.value)}
 						required
 					/>
 				</label>
@@ -74,7 +133,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<button type="submit">Sign Up</button>
+				<button type="submit" disabled={!firstName || !lastName || !password || !confirmPassword || !email}>Sign Up</button>
 			</form>
 		</>
 	);

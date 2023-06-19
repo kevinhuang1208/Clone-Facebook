@@ -6,7 +6,7 @@ import EditPostFormModal from "../EditPostFormModal";
 import DeletePostModal from "../DeletePostModal";
 import './PostModal.css'
 import CommentComponent from "./CommentComponent";
-import { editPostCommentThunk, getPostCommentsThunk } from "../../store/comments";
+import { editPostCommentThunk, getPostCommentsThunk, deletePostCommentThunk } from "../../store/comments";
 import { getAllPostsThunk } from "../../store/posts";
 import EditCommentModal from "../EditCommentModal";
 
@@ -15,30 +15,22 @@ function PostModal({ post }) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     // console.log("THIS IS POST", post)
+    const posts = useSelector((state) => state.posts)
+    // console.log("THIS IS STATE AND I WANNA EXTRACT DATA FROM IT", posts)
+    // console.log("THIS IS POST ID", post.id)
+    // console.log("THIS IS COMMENTS AT THE POST AT THE ID", posts[post.id].comments)
 
-    // EXAMPLEEEEE
+
     const [description, setDescription] = useState("")
     const [showResults, setShowResults] = useState(false)
     const [submitted, setSubmitted] = useState(false)
-    const onClick = () => {
-        setShowResults(true)
-    }
 
-    // EXAMPLEEEEEEEE
 
-    const comments = post.comments
+
+
+    // const comments = post.comments
     // console.log("WILL THERE BE COMMENTS IN HERE",  comments[0])
     // console.log("WILL THERE BE userId IN HERE",  user.id)
-
-    useEffect(() => {
-        dispatch(getAllPostsThunk())
-        dispatch(getPostCommentsThunk(post.id))
-      }, [dispatch])
-    // const handleClick = () => {
-    //     history.push(`/`)
-    //     // history.push(`/posts/${post.id}`)
-    // }
-
 
       //<EditCommentModal value={value} setValue={setValue} />
 
@@ -53,12 +45,12 @@ function PostModal({ post }) {
                     <OpenModalButton
                     className='button'
 			        buttonText="Edit Post"
-			        modalComponent={<EditPostFormModal post={post}/>}
+			        modalComponent={<EditPostFormModal key={post.id} post={post}/>}
 		        />
                 <OpenModalButton
                     className='button'
 			        buttonText="Delete Post"
-			        modalComponent={<DeletePostModal post={post}/>}
+			        modalComponent={<DeletePostModal key={post.id} post={post}/>}
 		        />
                 </div>
                  : null}
@@ -78,8 +70,7 @@ function PostModal({ post }) {
                     This is the comment count: {post.commentCount}
                 </div>
                 <div className="comments">
-                { comments.map(comment => {
-                    console.log("THIS IS EACH COMMENT", comment)
+                { posts[post.id].comments.map(comment => {
                     const handleSubmit = async (e) => {
                         e.preventDefault()
 
@@ -88,19 +79,26 @@ function PostModal({ post }) {
                         formData.append('description', description)
                         await dispatch(editPostCommentThunk(formData, post.id, comment.id))
                     }
+                    const handleClick = async (e) => {
+                        e.preventDefault();
+                        await dispatch(deletePostCommentThunk(post.id, comment.id))
+                      };
+                    const onClick = async () => {
+                        console.log("THIS IS INSIDE THE COMMENT MAP", comment.id)
+                        if (comment.id) setShowResults(!showResults)
+                    }
                     return (
                     <div>
                         <div>{comment.userFirstName}{comment.userLastName}</div>
-                        <div className="description-div">{comment.description}</div>
+                        {/* <div className="description-div">{comment.description}</div> */}
 
                         {user.id === comment.userId ?
                          <div>
-
-                        <input type="submit" value="Edit" onClick={onClick} />
+                            <button onClick={onClick}>Edit</button>
                             { showResults ?
                             <form onSubmit={handleSubmit}>
                             <input
-                                placeholder="Edit your comment"
+                                placeholder={comment.description}
                                 type="text"
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
@@ -108,14 +106,18 @@ function PostModal({ post }) {
                             <button>Change your comment</button>
                             </form>
                              : <>{comment.description}</> }
-                         </div>
+                            </div>
                         :
 
+                        null}
+                        {user.id === comment.userId ?
+                        <button onClick={handleClick}>Delete Comment</button>
+                        :
                         null}
                     </div>
                 )})
                 }
-                <CommentComponent key={post.id} post={post}/>
+                <CommentComponent key={post} post={post}/>
                 </div>
             </div>
         )

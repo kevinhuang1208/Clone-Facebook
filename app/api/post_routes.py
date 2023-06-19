@@ -106,6 +106,17 @@ def delete_post(id):
     else:
         return "Did not work."
 
+##### maybe
+@post_routes.route('/comments')
+@login_required
+def get_all_comments():
+
+    all_comments = Comment.query.all()
+
+    res = [comment.to_dict() for comment in all_comments]
+
+    return {"comments": res}
+####
 
 @post_routes.route("/<int:id>/comments")
 def get_post_comments(id):
@@ -163,7 +174,7 @@ def edit_comment_route(post_id, comment_id):
 
 
 @post_routes.route('/<int:post_id>/comments/<int:comment_id>/delete',methods =['DELETE'])
-def delete_review_route(post_id, comment_id):
+def delete_comment_route(post_id, comment_id):
     # print('what is this even working')
     comment_to_delete = Comment.query.get(comment_id)
     # print('------comment to delete------',comment_to_delete)

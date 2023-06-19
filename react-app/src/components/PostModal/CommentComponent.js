@@ -6,12 +6,14 @@ import { getAllPostsThunk } from "../../store/posts"
 
 function CommentComponent({ post }) {
     const dispatch = useDispatch()
-
+    // console.log("THIS IS POST ON COMMENTCOMPONENT", post)
     const [description, setDescription] = useState("")
 
-    useEffect(() => {
-        dispatch(getPostCommentsThunk(post.id))
-    }, [dispatch])
+    // let postObj = {...post}
+
+    // useEffect(() => {
+    //     dispatch(getPostCommentsThunk(post.id))
+    // }, [dispatch])
 
     const handleClick = async (e) => {
 

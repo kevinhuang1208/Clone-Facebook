@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import SignupFormPage from "../SignupFormPage"
 import OpenModalButton from "../OpenModalButton";
-import LoginFormModal from '../LoginFormModal';
+import LoginFormPage from '../LoginFormPage';
+import SignupFormModal from '../SignupFormModal';
 // import './Landingpage.css';
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
@@ -38,13 +38,13 @@ function LandingPage() {
     <div className='landingPageContainer'>
       <div className='wholeFormContainer'>
       <div className='landingPageSignUpContainer'>
-        <SignupFormPage />
+        <LoginFormPage />
       </div>
 	  <div className='landingPageLoginContainer'>
 		<OpenModalButton
       className='button'
 			buttonText="Create new account"
-			modalComponent={<LoginFormModal/>}
+			modalComponent={<SignupFormModal/>}
 		/>
 	  </div>
     <div className="demo-button">

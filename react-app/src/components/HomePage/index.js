@@ -5,6 +5,7 @@ import OpenModalButton from '../OpenModalButton';
 import LoginFormModal from '../LoginFormModal';
 import PostFormModal from '../PostFormModal';
 import { getAllPostsThunk } from '../../store/posts';
+import { getAllCommentsThunk } from '../../store/comments';
 import { getPostCommentsThunk } from '../../store/comments';
 import EachPost from './eachPost';
 import "./HomePage.css"
@@ -20,9 +21,6 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(getAllPostsThunk())
-    // if(user){
-    //   dispatch(getSingleUserThunk(user.id))
-    // }
   }, [dispatch])
 
   const postsArr = Object.values(posts)
@@ -49,7 +47,7 @@ function HomePage() {
             <div className = 'allPostsContainer'>
                 {
                     postsArr.map(post => (
-                    <EachPost key={post.id} post = {post}/>
+                    <EachPost key={post} post={post}/>
                         ))
                 }
         </div>
