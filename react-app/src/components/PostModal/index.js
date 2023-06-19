@@ -9,6 +9,7 @@ import CommentComponent from "./CommentComponent";
 import { editPostCommentThunk, getPostCommentsThunk, deletePostCommentThunk } from "../../store/comments";
 import { getAllPostsThunk } from "../../store/posts";
 import EditCommentModal from "../EditCommentModal";
+import EachComment from "./EachComment";
 
 
 function PostModal({ post }) {
@@ -18,7 +19,7 @@ function PostModal({ post }) {
     const posts = useSelector((state) => state.posts)
     // console.log("THIS IS STATE AND I WANNA EXTRACT DATA FROM IT", posts)
     // console.log("THIS IS POST ID", post.id)
-    // console.log("THIS IS COMMENTS AT THE POST AT THE ID", posts[post.id].comments)
+    console.log("THIS IS COMMENTS AT THE POST AT THE ID", posts[post.id].comments)
 
 
     const [description, setDescription] = useState("")
@@ -71,55 +72,59 @@ function PostModal({ post }) {
                 </div>
                 <div className="comments">
                 { posts[post.id].comments.map(comment => {
-                    const handleSubmit = async (e) => {
-                        e.preventDefault()
-
-                        const formData = new FormData()
-                        setSubmitted(true)
-                        formData.append('description', description)
-                        await dispatch(editPostCommentThunk(formData, post.id, comment.id))
-                    }
-                    const handleClick = async (e) => {
-                        e.preventDefault();
-                        await dispatch(deletePostCommentThunk(post.id, comment.id))
-                      };
-                    const onClick = async () => {
-                        console.log("THIS IS INSIDE THE COMMENT MAP", comment.id)
-                        if (comment.id) setShowResults(!showResults)
-                    }
                     return (
-                    <div>
-                        <div>{comment.userFirstName}{comment.userLastName}</div>
-                        {/* <div className="description-div">{comment.description}</div> */}
+                    <EachComment key={post} post={post} comment={comment}/>
+                    )
+                })}
 
-                        {user.id === comment.userId ?
-                         <div>
-                            <button onClick={onClick}>Edit</button>
-                            { showResults ?
-                            <form onSubmit={handleSubmit}>
-                            <input
-                                placeholder={comment.description}
-                                type="text"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                            <button>Change your comment</button>
-                            </form>
-                             : <>{comment.description}</> }
-                            </div>
-                        :
-
-                        null}
-                        {user.id === comment.userId ?
-                        <button onClick={handleClick}>Delete Comment</button>
-                        :
-                        null}
-                    </div>
-                )})
-                }
-                <CommentComponent key={post} post={post}/>
+                    <CommentComponent key={post} post={post}/>
                 </div>
-            </div>
+                </div>
+
+
+                //     const handleSubmit = async (e) => {
+                //         e.preventDefault()
+
+                //         const formData = new FormData()
+                //         setSubmitted(true)
+                //         formData.append('description', description)
+                //         await dispatch(editPostCommentThunk(formData, post.id, comment.id))
+                //     }
+                //     const handleClick = async (e) => {
+                //         e.preventDefault();
+                //         await dispatch(deletePostCommentThunk(post.id, comment.id))
+                //       };
+                //     const onClick = async () => {
+                //         console.log("THIS IS INSIDE THE COMMENT MAP", comment.id)
+                //         await setDescription(comment.description)
+                //         await setShowResults(!showResults)
+                //     }
+                //     return (
+                //     <div>
+                //         <div>{comment.userFirstName} {comment.userLastName}</div>
+                //         {/* <div className="description-div">{comment.description}</div> */}
+
+                //         {user.id === comment.userId ?
+                //          <div>
+                //             { showResults ?
+                //             <form onSubmit={handleSubmit}>
+                //             <input
+                //                 placeholder={comment.description}
+                //                 type="text"
+                //                 value={description}
+                //                 onChange={(e) => setDescription(e.target.value)}
+                //             />
+                //             <button disabled={!description}>Change your comment</button>
+                //             </form>
+                //              : <>{comment.description}</> }
+                //             <button onClick={onClick}>Edit</button>
+                //             <button onClick={handleClick}>Delete Comment</button>
+                //         </div>
+                //         :
+
+                //         <>{comment.description}</>}
+                //     </div>
+                // )
         )
 }
 

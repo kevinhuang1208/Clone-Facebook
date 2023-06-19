@@ -68,6 +68,7 @@ export const editPostCommentThunk = (comment,postId,commentId) => async (dispatc
 
     if(response.ok){
         dispatch(editPostComment(data))
+        dispatch(getAllPostsThunk())
         return data
     } else {
         return data
