@@ -7,25 +7,25 @@ from datetime import date
 # Adds a demo user, you can add other users here if you want
 def seed_comments():
     comment1 = Comment(
-        description='Your dreams and aspirations are within reach. Believe in yourself, stay focused, and work hard. You have the power to turn your dreams into reality.', upload='', created_at=date(2023, 2, 7), user_id=10, post_id=1)
+        description='Your dreams and aspirations are within reach. Believe in yourself, stay focused, and work hard. You have the power to turn your dreams into reality.', created_at=date(2023, 2, 7), user_id=10, post_id=1)
     comment2 = Comment(
-        description='Embrace the journey of self-discovery and personal growth. Each step you take, no matter how small, brings you closer to becoming the best version of yourself.', upload='', created_at=date(2023, 2, 26), user_id=9, post_id=2)
+        description='Embrace the journey of self-discovery and personal growth. Each step you take, no matter how small, brings you closer to becoming the best version of yourself.', created_at=date(2023, 2, 26), user_id=9, post_id=2)
     comment3 = Comment(
-        description='This has to be the great qutoe of all time!', upload='', created_at=date(2023, 2, 8), user_id=8, post_id=3)
+        description='This has to be the great quote of all time!', created_at=date(2023, 2, 8), user_id=8, post_id=3)
     comment4 = Comment(
-        description='I solemnly swear that I agree with you.', upload='', created_at=date(2023, 3, 1), user_id=7, post_id=4)
+        description='I solemnly swear that I agree with you.', created_at=date(2023, 3, 1), user_id=7, post_id=4)
     comment5 = Comment(
-        description='The Dark Knight is the GMOAT forreal!', upload='', created_at=date(2023, 3, 6), user_id=6, post_id=5)
+        description='The Dark Knight is the GMOAT forreal!', created_at=date(2023, 3, 6), user_id=6, post_id=5)
     comment6 = Comment(
-        description='This quote is the best!', upload='', created_at=date(2023, 3, 15), user_id=5, post_id=6)
+        description='This quote is the best!', created_at=date(2023, 3, 15), user_id=5, post_id=6)
     comment7 = Comment(
-        description='This hits hard....', upload='', created_at=date(2023, 4, 27), user_id=4, post_id=7)
+        description='This hits hard....', created_at=date(2023, 4, 27), user_id=4, post_id=7)
     comment8 = Comment(
-        description='There is no better quote than this and that is a fact.', upload='', created_at=date(2023, 4, 30), user_id=3, post_id=8)
+        description='There is no better quote than this and that is a fact.', created_at=date(2023, 4, 30), user_id=3, post_id=8)
     comment9 = Comment(
-        description='You are capable of overcoming any adversity that comes your way. Trust in your resilience and inner strength. Remember, challenges are opportunities for growth and transformation. Keep pushing forward, and you will emerge stronger and wiser.', upload='', created_at=date(2023, 5, 28), user_id=2, post_id=9)
+        description='You are capable of overcoming any adversity that comes your way. Trust in your resilience and inner strength. Remember, challenges are opportunities for growth and transformation. Keep pushing forward, and you will emerge stronger and wiser.', created_at=date(2023, 5, 28), user_id=2, post_id=9)
     comment10 = Comment(
-        description='You have the power to create a positive impact in your life and the lives of others.', upload='', created_at=date(2023, 5, 28), user_id=1, post_id=10)
+        description='You have the power to create a positive impact in your life and the lives of others.', created_at=date(2023, 5, 28), user_id=1, post_id=10)
 
 
     db.session.add(comment1)

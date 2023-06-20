@@ -45,7 +45,6 @@ def upgrade():
     op.create_table('comments',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('description', sa.String(length=1000), nullable=False),
-    sa.Column('upload', sa.String(length=500), nullable=False),
     sa.Column('created_at', sa.Date(), nullable=True),
     sa.Column('post_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),

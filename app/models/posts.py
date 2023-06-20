@@ -22,7 +22,10 @@ class Post(db.Model):
 
     def to_dict(self):
 
-        comments = Comment.query.filter_by(post_id = self.id).all()
+        comments_search = Comment.query.filter_by(post_id = self.id).all()
+        comments = []
+        for comment in comments_search:
+            comments.append(comment.to_dict())
         comments_length = len(comments)
 
         user = User.query.get(self.user_id)

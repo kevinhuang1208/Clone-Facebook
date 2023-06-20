@@ -1,0 +1,6 @@
+.comments {
+    border: black solid 2px;
+    height: 200px;
+    overflow-y: auto;
+    overflow-wrap: break-word;
+}

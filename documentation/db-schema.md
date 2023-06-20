@@ -31,13 +31,13 @@
 `GET /api/posts/`
 * Returns the information for all posts
 
-`POST /api/posts/`
+`POST /api/posts/new`
 * Creates a new post
 
 `GET /api/posts/:id`
 * Returns the information for one post
 
-`PUT /api/posts/:id`
+`PUT /api/posts/:id/edit`
 * Edits the information for one post
 
 `DELETE /api/posts/:id`

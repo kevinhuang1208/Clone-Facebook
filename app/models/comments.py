@@ -11,7 +11,6 @@ class Comment(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     description = db.Column(db.String(1000), nullable = False)
-    upload = db.Column(db.String(500),nullable = False)
     created_at = db.Column(db.Date, default=date.today())
     post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
@@ -20,10 +19,14 @@ class Comment(db.Model):
     commentuserid = db.relationship("User", back_populates = 'comment')
 
     def to_dict(self):
+
+        user = User.query.get(self.user_id)
+
         return {
             'id': self.id,
             'description': self.description,
-            'upload': self.upload,
+            'userFirstName': user.firstname,
+            'userLastName': user.lastname,
             'createdAt': self.created_at,
             'postId': self.post_id,
             'userId': self.user_id
