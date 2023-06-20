@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import OpenModalButton from '../OpenModalButton';
-import LoginFormModal from '../LoginFormModal';
 import PostFormModal from '../PostFormModal';
 import { getAllPostsThunk } from '../../store/posts';
-import { getAllCommentsThunk } from '../../store/comments';
-import { getPostCommentsThunk } from '../../store/comments';
 import EachPost from './eachPost';
 import "./HomePage.css"
 
@@ -33,7 +30,14 @@ function HomePage() {
     return (
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>
-          there is content in here
+          <div>Home</div>
+          <div>{user ? user.firstname: null} {user ? user.lastname: null }</div>
+          <div>Home</div>
+          <div>Home</div>
+          <div>Home</div>
+          <div>Home</div>
+          <div>Home</div>
+          <div>Home</div>
         </div>
         <div className='main-section'>
             <div className='new-post'>
