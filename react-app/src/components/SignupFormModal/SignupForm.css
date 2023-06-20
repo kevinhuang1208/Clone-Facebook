@@ -1,0 +1,75 @@
+.wholeSignUpContainer {
+    width: 450px;
+    height: 450px;
+}
+
+.wholeSignUpContainer > form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+#modal-content {
+    border-radius: 10px;
+}
+
+/* .wholeSignUpContainer > h1 {
+   height: 30px;
+}
+
+.wholeSignUpContainer > p {
+    height: 10px;
+} */
+
+
+
+.signUpTextContainer {
+    display: flex;
+    height: 80px;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 10px 10px 20px 10px;
+    border-bottom: lightgray 1px solid;
+}
+
+.xButton {
+    cursor: pointer;
+}
+
+form > .nameFields {
+    width: 407px;
+    display: flex;
+    justify-content: space-between;
+}
+
+form > .nameFields > .nameInputs {
+    border-radius: 10px;
+    border: lightgray solid 1px;
+    width: 190px;
+    height: 40px;
+}
+
+form > .signUpFormInputs {
+    border-radius: 10px;
+    border: lightgray solid 1px;
+    width: 400px;
+    height: 40px;
+}
+
+form > .signUpButton {
+    height: 40px;
+    width: 200px;
+    background-color: #42b72a;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.smallText {
+    font-size: 10px;
+}
