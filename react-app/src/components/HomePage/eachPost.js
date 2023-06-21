@@ -51,32 +51,35 @@ function EachPost({ post }) {
     else
         return (
             <div className='postTileHomePage' onClick={handleClick}>
-            <div className="dropdownButton" onClick={openMenu}>
-            ...
-            </div>
-            <ul className={ulDropDown} ref={ulRef}>
+            <div className="dropdownWhole" onClick={openMenu}>
+            <div className="dropdownButton">...
+
+            <div className={ulDropDown} ref={ulRef}>
                 {user && user.id == post.userId ?
-                    <li>
+
                     <OpenModalButton
                     className='button'
 			        buttonText="Edit Post"
                     onItemClick={closeMenu}
 			        modalComponent={<EditPostFormModal post={post}/>}
 		        />
-                </li> : null
+
+                 : null
                 }
                 {user && user.id == post.userId ?
-                <li>
+
                 <OpenModalButton
                     className='button'
 			        buttonText="Delete Post"
                     onItemClick={closeMenu}
 			        modalComponent={<DeletePostModal post={post}/>}
 		        />
-                </li>
+
 
                  : null}
-             </ul>
+                 </div>
+             </div>
+             </div>
                 <div className='postStatusDiv'>
                     {post.status}
                 </div>

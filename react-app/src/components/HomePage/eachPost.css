@@ -11,15 +11,36 @@
     max-height: 625px;
 }
 
-.post-dropdown {
 
+.dropdownWhole {
+    position: relative;
+    width: 90%;
+    display: inline-block;
+}
+.dropdownButton {
+    cursor: pointer;
+    width: fit-content;
+    float: right;
+}
+
+.post-dropdown {
     position: absolute;
     background-color: white;
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
-    z-index: 1;
-    right: 300px;
-    padding-right: 50px;
-    padding-top: 20px;
+    z-index: 2;
     width: 240px;
     border-radius: 10px;
   }
+
+.post-dropdown > button {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.post-dropdown > button:hover {
+    background-color: lightgray;
+}
