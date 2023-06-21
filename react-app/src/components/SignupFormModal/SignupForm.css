@@ -3,7 +3,7 @@
     height: 450px;
 }
 
-.wholeSignUpContainer > form {
+.wholeSignUpContainer > #signUpForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -38,27 +38,27 @@
     cursor: pointer;
 }
 
-form > .nameFields {
+#signUpForm > .nameFields {
     width: 407px;
     display: flex;
     justify-content: space-between;
 }
 
-form > .nameFields > .nameInputs {
+#signUpForm > .nameFields > .nameInputs {
     border-radius: 10px;
     border: lightgray solid 1px;
     width: 190px;
     height: 40px;
 }
 
-form > .signUpFormInputs {
+#signUpForm > .signUpFormInputs {
     border-radius: 10px;
     border: lightgray solid 1px;
     width: 400px;
     height: 40px;
 }
 
-form > .signUpButton {
+#signUpForm > .signUpButton {
     height: 40px;
     width: 200px;
     background-color: #42b72a;

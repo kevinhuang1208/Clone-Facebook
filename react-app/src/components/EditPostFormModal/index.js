@@ -67,7 +67,7 @@ const EditPostFormModal = ({post}) => {
     }
 
     return (
-        <div className="createPostFormContainer">
+        <div className="editPostFormContainer">
             <h1 className="formHeader">Edit Post</h1>
             {submitted ? (
                 <h2 className='post-form-loading'>Uploading... please wait</h2>
@@ -80,9 +80,10 @@ const EditPostFormModal = ({post}) => {
                 <div className='propic'></div>
                 <div className='fullname'>Kevin</div>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id='editForm'>
 
-                <input
+                <textarea
+                    className='editFormTextArea'
                     placeholder="What's on your mind?"
                     type="text"
                     value={status}
@@ -93,6 +94,7 @@ const EditPostFormModal = ({post}) => {
                     <p>
                         Current attachment below. Please upload another file if you would like to overwrite this attachment. <b>Please upload the same image if you don't wish to change it</b>
                     </p>
+                    <div className='fileSrcDiv'>
                     {post.upload.substr(post.upload.length - 3) === "mp4" ?
                         <video width='700px' height = '400px' controls controlsList="nodownload">
                             <source src = {post.upload} type= 'video/mp4'>
@@ -101,7 +103,8 @@ const EditPostFormModal = ({post}) => {
                         :
                         <img src={post.upload}/>
                     }
-                </div>
+                    </div>
+                <div className='filePostDiv'>
                 <label>
                     Edit your upload:
                     <input
@@ -111,9 +114,11 @@ const EditPostFormModal = ({post}) => {
                         filename={upload && upload.name}
                         // value={post.upload}
                         onChange={(e) => setUpload(e.target.files[0])}
-                    />
+                        />
                 </label>
+                </div>
                 <button disabled={submitted || !status || !upload}>Edit Post</button>
+                </div>
 
             </form>
 

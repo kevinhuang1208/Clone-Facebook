@@ -58,7 +58,7 @@ function HomePage() {
                 <OpenModalButton
                     className='open-form'
                     buttonText= "What's on your mind?"
-                    modalComponent={<PostFormModal key={user.id} user={user}/>}
+                    modalComponent={<PostFormModal key={user} user={user}/>}
                 />
             </div>
             <div className = 'allPostsContainer'>

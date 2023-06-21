@@ -10,3 +10,16 @@
     max-width: 680px;
     max-height: 625px;
 }
+
+.post-dropdown {
+
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    z-index: 1;
+    right: 300px;
+    padding-right: 50px;
+    padding-top: 20px;
+    width: 240px;
+    border-radius: 10px;
+  }

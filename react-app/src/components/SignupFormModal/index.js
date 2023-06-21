@@ -88,7 +88,7 @@ function SignupFormModal() {
 				</div>
 				<div className="xButton" onClick={closeModal}>✖</div>
 			</div>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} id="signUpForm">
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>

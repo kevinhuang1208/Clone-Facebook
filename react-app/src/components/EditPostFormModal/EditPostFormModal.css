@@ -1,4 +1,55 @@
-.fileInEdit > img {
-    max-width: 680px;
-    max-height: 625px;
+.fileInEdit > .fileSrcDiv > img {
+    max-width: 512px;
+    max-height: 512px;
+}
+
+.editPostFormContainer {
+    width: 680px;
+    height: 800px;
+    overflow-y: auto;
+}
+
+#editForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.editFormTextArea {
+    height: 100px;
+    border: lightgray solid 1px;
+    font-size: 18px;
+    resize: none;
+}
+
+.fileInEdit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fileSrcDiv {
+    margin-bottom: 20px;
+}
+
+.fileInEdit > button:disabled {
+    width: 470px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.fileInEdit > button {
+    margin-bottom: 20px;
+}
+
+.fileInEdit > button:enabled {
+    width: 470px;
+    height: 40px;
+    cursor: pointer;
+    background-color: #1877f2;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
 }

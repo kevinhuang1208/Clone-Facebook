@@ -1,54 +1,82 @@
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import OpenModalButton from "../OpenModalButton";
 import EditPostFormModal from "../EditPostFormModal";
 import DeletePostModal from "../DeletePostModal";
 import './eachPost.css'
 import PostModal from "../PostModal";
-import { getPostCommentsThunk } from "../../store/comments";
-import { getAllPostsThunk } from "../../store/posts";
 
 
 function EachPost({ post }) {
     const history = useHistory();
-    const dispatch = useDispatch()
+
     const user = useSelector((state) => state.session.user)
-    // console.log("THIS IS POST", post)
 
-    // useEffect(() => {
-    //     dispatch(getPostCommentsThunk(post.id))
-
-    //   }, [dispatch])
 
 
     const handleClick = () => {
         history.push(`/`)
-        // history.push(`/posts/${post.id}`)
     }
 
-    // console.log("THIS IS EACH IMG/VID", post.upload.substr(post.upload.length - 3))
-    // console.log("THIS IS POST.UPLOAD", post.upload)
+    //
+    const [showMenu, setShowMenu] = useState(false);
+    const ulRef = useRef();
+
+    const openMenu = () => {
+      if (showMenu) return;
+      setShowMenu(true);
+    };
+
+    useEffect(() => {
+      if (!showMenu) return;
+
+      const closeMenu = (e) => {
+        if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+        }
+      };
+
+      document.addEventListener("click", closeMenu);
+
+      return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
+
+    const ulDropDown = "post-dropdown" + (showMenu ? "" : " hidden");
+    const closeMenu = () => setShowMenu(false);
+    //
 
     if (!post) return null
 
     else
         return (
             <div className='postTileHomePage' onClick={handleClick}>
+            <div className="dropdownButton" onClick={openMenu}>
+            ...
+            </div>
+            <ul className={ulDropDown} ref={ulRef}>
                 {user && user.id == post.userId ?
-                    <div>
+                    <li>
                     <OpenModalButton
                     className='button'
 			        buttonText="Edit Post"
+                    onItemClick={closeMenu}
 			        modalComponent={<EditPostFormModal post={post}/>}
 		        />
+                </li> : null
+                }
+                {user && user.id == post.userId ?
+                <li>
                 <OpenModalButton
                     className='button'
 			        buttonText="Delete Post"
+                    onItemClick={closeMenu}
 			        modalComponent={<DeletePostModal post={post}/>}
 		        />
-                </div>
+                </li>
+
                  : null}
+             </ul>
                 <div className='postStatusDiv'>
                     {post.status}
                 </div>
