@@ -53,3 +53,19 @@
 .rightSideBarTitle {
     font-weight: bold;
 }
+
+.new-post {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.new-post > button {
+    border-radius: 25px;
+    width: 80%;
+    height: 40px;
+    font-size: 18px;
+    border: none;
+    cursor: pointer;
+}

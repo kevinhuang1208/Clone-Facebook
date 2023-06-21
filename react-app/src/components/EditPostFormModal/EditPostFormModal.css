@@ -9,6 +9,20 @@
     overflow-y: auto;
 }
 
+.editHeaderWButton {
+    width: 100%;
+    display: inline-block;
+    border-bottom: lightgray solid 1px;
+}
+
+.editHeaderWButton > .xButton {
+    float: right;
+}
+
+.editFormHeader {
+    text-align: center;
+}
+
 #editForm {
     display: flex;
     flex-direction: column;
@@ -52,4 +66,9 @@
     color: white;
     font-size: 20px;
     font-weight: bold;
+}
+
+.editPostUserDetails {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }

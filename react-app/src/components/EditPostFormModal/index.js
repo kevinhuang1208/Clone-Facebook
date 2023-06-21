@@ -15,7 +15,7 @@ function useForceUpdate(){
 }
 
 
-const EditPostFormModal = ({post}) => {
+const EditPostFormModal = ({post, user}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     // const forceUpdate = useForceUpdate();
@@ -24,7 +24,7 @@ const EditPostFormModal = ({post}) => {
     const [upload, setUpload] = useState("")
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
-
+    // console.log("THIS IS THE USER OF THE POST", user)
     // const userId = useSelector(state => state.session.user)
     // const allPosts = useSelector(state => state.posts)
 
@@ -68,7 +68,10 @@ const EditPostFormModal = ({post}) => {
 
     return (
         <div className="editPostFormContainer">
-            <h1 className="formHeader">Edit Post</h1>
+            <div className='editHeaderWButton'>
+                <div className="xButton" onClick={closeModal}>✖</div>
+                <h1 className="editFormHeader">Edit Post</h1>
+            </div>
             {submitted ? (
                 <h2 className='post-form-loading'>Uploading... please wait</h2>
             ) : null}
@@ -76,9 +79,11 @@ const EditPostFormModal = ({post}) => {
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul> : null}
-            <div>
+            <div className='editPostUserDetails'>
                 <div className='propic'></div>
-                <div className='fullname'>Kevin</div>
+                { user ?
+                    <div>{user.firstname} {user.lastname}</div> : null
+                }
             </div>
             <form onSubmit={handleSubmit} id='editForm'>
 

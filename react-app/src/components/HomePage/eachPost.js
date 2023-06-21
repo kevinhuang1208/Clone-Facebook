@@ -8,13 +8,13 @@ import './eachPost.css'
 import PostModal from "../PostModal";
 
 
-function EachPost({ post }) {
+function EachPost({ post, users }) {
     const history = useHistory();
 
     const user = useSelector((state) => state.session.user)
 
-
-
+    // console.log("THIS IS ALL USERS", users)
+    // console.log("THIS IS EACH POST", post)
     const handleClick = () => {
         history.push(`/`)
     }
@@ -51,8 +51,15 @@ function EachPost({ post }) {
     else
         return (
             <div className='postTileHomePage' onClick={handleClick}>
-            <div className="dropdownWhole" onClick={openMenu}>
-            <div className="dropdownButton">...
+            <div className="eachPostTopDiv">
+            { users ?
+              users.map((eachUser) =>
+               eachUser.id == post.userId ?
+                <div className="usersName">{eachUser.firstname} {eachUser.lastname}</div> : null
+              )
+             : null
+            }
+            <div className="dropdownButton" onClick={openMenu}>...
 
             <div className={ulDropDown} ref={ulRef}>
                 {user && user.id == post.userId ?
@@ -60,8 +67,8 @@ function EachPost({ post }) {
                     <OpenModalButton
                     className='button'
 			        buttonText="Edit Post"
-                    onItemClick={closeMenu}
-			        modalComponent={<EditPostFormModal post={post}/>}
+                    onButtonClick={closeMenu}
+			        modalComponent={<EditPostFormModal post={post} user={user}/>}
 		        />
 
                  : null
@@ -71,7 +78,7 @@ function EachPost({ post }) {
                 <OpenModalButton
                     className='button'
 			        buttonText="Delete Post"
-                    onItemClick={closeMenu}
+                    onButtonClick={closeMenu}
 			        modalComponent={<DeletePostModal post={post}/>}
 		        />
 
@@ -92,14 +99,16 @@ function EachPost({ post }) {
                 <img src={post.upload}/>
                 }
                 </div>
+                <div className="divToFloat">
                 <div className="commentCount">
-                    This is the comment count: {post.commentCount}
+                    {post.commentCount} Comment(s)
+                </div>
                 </div>
                 <OpenModalButton
                     className='comments'
-			        buttonText="Comment"
-			        modalComponent={<PostModal post={post}/>}
-		        />
+			             buttonText="Comment"
+			              modalComponent={<PostModal post={post}/>}
+		            />
             </div>
         )
 }

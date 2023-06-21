@@ -41,6 +41,8 @@ function HomePage() {
     history.push("/landing")
   }
 
+  if(!allUsers) return null;
+
     return (
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>
@@ -64,14 +66,14 @@ function HomePage() {
             <div className = 'allPostsContainer'>
                 {
                     postsArr.map(post => (
-                    <EachPost key={post} post={post}/>
+                    <EachPost key={post} post={post} users={allUsers}/>
                         ))
                 }
         </div>
         </div>
         <div className='right-sidebar'>
             <div className='rightSideBarTitle'>Users</div>
-            { allUsers ? allUsers.map((eachUser) =>
+            { allUsers && user ? allUsers.map((eachUser) =>
               eachUser.id != user.id ?
               <div className='eachUserTab' onClick={friendsComingSoon}>{eachUser.firstname} {eachUser.lastname}</div> : null
             )
