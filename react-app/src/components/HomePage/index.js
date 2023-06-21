@@ -6,6 +6,7 @@ import PostFormModal from '../PostFormModal';
 import { getAllPostsThunk } from '../../store/posts';
 import EachPost from './eachPost';
 import "./HomePage.css"
+import { getAllUsersThunk } from '../../store/users';
 
 
 function HomePage() {
@@ -13,15 +14,24 @@ function HomePage() {
   const history = useHistory()
   const posts = useSelector((state) => state.posts)
   const user = useSelector((state) => state.session.user)
+  const allUsersObj = useSelector((state) => state.users)
+  const allUsers = Object.values(allUsersObj)
   // console.log("THIS IS POSTS", posts)
-  // console.log("THIS IS USERS", user)
+  // console.log("THIS IS USERS", allUsers)
+
   const comingSoon = (e) => {
     e.preventDefault();
     return alert("Feature coming soon!")
   }
 
+  const friendsComingSoon = (e) => {
+    e.preventDefault();
+    return alert("Friends Feature will be implemented soon!")
+  }
+
   useEffect(() => {
     dispatch(getAllPostsThunk())
+    dispatch(getAllUsersThunk())
   }, [dispatch])
 
   const postsArr = Object.values(posts)
@@ -48,7 +58,7 @@ function HomePage() {
                 <OpenModalButton
                     className='open-form'
                     buttonText= "What's on your mind?"
-                    modalComponent={<PostFormModal/>}
+                    modalComponent={<PostFormModal key={user.id} user={user}/>}
                 />
             </div>
             <div className = 'allPostsContainer'>
@@ -60,7 +70,13 @@ function HomePage() {
         </div>
         </div>
         <div className='right-sidebar'>
-              there's also content in here
+            <div className='rightSideBarTitle'>Users</div>
+            { allUsers ? allUsers.map((eachUser) =>
+              eachUser.id != user.id ?
+              <div className='eachUserTab' onClick={friendsComingSoon}>{eachUser.firstname} {eachUser.lastname}</div> : null
+            )
+            : null
+            }
         </div>
       </div>
     )

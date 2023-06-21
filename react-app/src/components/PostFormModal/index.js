@@ -4,21 +4,13 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { getAllPostsThunk } from '../../store/posts';
-// import "./EpisodeForm.css"
+import "./PostFormModal.css"
 import { postPostThunk } from '../../store/posts';
 
-function useForceUpdate(){
-    const [value, setValue] = useState(0); // integer state
-    return () => setValue(value => value + 1); // update state to force render
-    // A function that increment the previous state like here
-    // is better than directly setting `setValue(value + 1)`
-}
 
-
-const PostFormModal = () => {
+const PostFormModal = ({user}) => {
     const history = useHistory()
     const dispatch = useDispatch()
-    // const forceUpdate = useForceUpdate();
     const { closeModal } = useModal();
     const [status, setStatus] = useState('')
     const [upload, setUpload] = useState(undefined)
@@ -61,8 +53,8 @@ const PostFormModal = () => {
             closeModal()
         }
 
-
     }
+    // console.log("THIS IS USER IN POST FORM", user.firstname)
 
     return (
         <div className="createPostFormContainer">
@@ -74,31 +66,33 @@ const PostFormModal = () => {
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul> : null}
-            <div>
+            <div className='fullNameDiv'>
                 <div className='propic'></div>
-                <div className='fullname'>Kevin</div>
+                <div className='fullname'>{user ? user.firstname : null} {user ? user.lastname : null}</div>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form id='postForm' onSubmit={handleSubmit}>
 
-                <input
+                <textarea
+                    className='postFormInput'
                     placeholder="What's on your mind?"
                     type="text"
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                 />
 
-
-                <label>
-                    Add to your post:
-                    <input
-                        placeholder="add to your post"
-                        type="file"
-                        accept='.png, .jpg, .jpeg, .gif, .mp4, .mov'
-                        filename={upload && upload.name}
-                        onChange={(e) => setUpload(e.target.files[0])}
-                    />
-                </label>
-                <button disabled={submitted || !status || !upload}>Post</button>
+                <div className='filePostDiv'>
+                    <label>
+                        Add to your post:
+                        <input
+                            placeholder="add to your post"
+                            type="file"
+                            accept='.png, .jpg, .jpeg, .gif, .mp4, .mov'
+                            filename={upload && upload.name}
+                            onChange={(e) => setUpload(e.target.files[0])}
+                        />
+                    </label>
+                </div>
+                <button className='postFormButton' disabled={submitted || !status || !upload}>Post</button>
 
             </form>
 

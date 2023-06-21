@@ -20,6 +20,7 @@
 {
     height: 100%;
     margin-top: 56px;
+    padding-top: 20px;
     width: 300px;
     position: fixed;
     z-index: 900;
@@ -33,15 +34,22 @@
     left: 25%; */
 }
 
-.left-sidebar > .eachTab {
-    padding-left: 20px;
+.left-sidebar > .eachTab,
+.rightSideBarTitle,
+.eachUserTab {
+    padding-left: 10px;
     border-radius: 10px;
     width: 300px;
     height: 35px;
 }
 
-.left-sidebar > .eachTab:hover {
+.left-sidebar > .eachTab:hover,
+.eachUserTab:hover {
     background-color: lightgray;
     cursor: pointer;
     border-radius: 10px;
+}
+
+.rightSideBarTitle {
+    font-weight: bold;
 }
