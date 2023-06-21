@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { getAllPostsThunk } from '../../store/posts';
-// import "./EpisodeForm.css"
+import "./EditPostFormModal.css"
 import { editPostThunk } from '../../store/posts';
 
 function useForceUpdate(){
@@ -89,7 +89,7 @@ const EditPostFormModal = ({post}) => {
                     onChange={(e) => setStatus(e.target.value)}
                 />
 
-                <div className='file-in-edit'>
+                <div className='fileInEdit'>
                     <p>
                         Current attachment below. Please upload another file if you would like to overwrite this attachment. <b>Please upload the same image if you don't wish to change it</b>
                     </p>

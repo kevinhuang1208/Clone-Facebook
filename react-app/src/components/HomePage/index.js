@@ -15,6 +15,10 @@ function HomePage() {
   const user = useSelector((state) => state.session.user)
   // console.log("THIS IS POSTS", posts)
   // console.log("THIS IS USERS", user)
+  const comingSoon = (e) => {
+    e.preventDefault();
+    return alert("Feature coming soon!")
+  }
 
   useEffect(() => {
     dispatch(getAllPostsThunk())
@@ -30,14 +34,13 @@ function HomePage() {
     return (
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>
-          <div>Home</div>
-          <div>{user ? user.firstname: null} {user ? user.lastname: null }</div>
-          <div>Home</div>
-          <div>Home</div>
-          <div>Home</div>
-          <div>Home</div>
-          <div>Home</div>
-          <div>Home</div>
+          <div className='eachTab' onClick={comingSoon}>Home</div>
+          <div className='eachTab' onClick={comingSoon}>{user ? user.firstname: null} {user ? user.lastname: null }</div>
+          <div className='eachTab' onClick={comingSoon}>Watch</div>
+          <div className='eachTab' onClick={comingSoon}>Marketplace</div>
+          <div className='eachTab' onClick={comingSoon}>Gaming</div>
+          <div className='eachTab' onClick={comingSoon}>My Groups</div>
+          <div className='eachTab' onClick={comingSoon}>My Shortcuts</div>
         </div>
         <div className='main-section'>
             <div className='new-post'>
