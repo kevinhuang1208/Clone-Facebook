@@ -39,7 +39,8 @@ function ProfileButton({ user }) {
 
   return (
     <div className="logoutButton">
-      <button onClick={handleLogout}>Log Out</button>
+      {user ?
+      <button onClick={handleLogout}>Log Out</button> : null }
     </div>
   );
 }

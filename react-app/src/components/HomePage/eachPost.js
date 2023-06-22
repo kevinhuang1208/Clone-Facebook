@@ -107,7 +107,7 @@ function EachPost({ post, users }) {
                 <OpenModalButton
                     className='comments'
 			             buttonText="Comment"
-			              modalComponent={<PostModal post={post}/>}
+			              modalComponent={<PostModal post={post} users={users}/>}
 		            />
             </div>
         )
