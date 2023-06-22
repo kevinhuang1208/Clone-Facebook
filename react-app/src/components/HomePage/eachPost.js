@@ -1,54 +1,92 @@
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import OpenModalButton from "../OpenModalButton";
 import EditPostFormModal from "../EditPostFormModal";
 import DeletePostModal from "../DeletePostModal";
 import './eachPost.css'
 import PostModal from "../PostModal";
-import { getPostCommentsThunk } from "../../store/comments";
-import { getAllPostsThunk } from "../../store/posts";
 
 
-function EachPost({ post }) {
+function EachPost({ post, users }) {
     const history = useHistory();
-    const dispatch = useDispatch()
+
     const user = useSelector((state) => state.session.user)
-    // console.log("THIS IS POST", post)
 
-    // useEffect(() => {
-    //     dispatch(getPostCommentsThunk(post.id))
-
-    //   }, [dispatch])
-
-
+    // console.log("THIS IS ALL USERS", users)
+    // console.log("THIS IS EACH POST", post)
     const handleClick = () => {
         history.push(`/`)
-        // history.push(`/posts/${post.id}`)
     }
 
-    // console.log("THIS IS EACH IMG/VID", post.upload.substr(post.upload.length - 3))
-    // console.log("THIS IS POST.UPLOAD", post.upload)
+    //
+    const [showMenu, setShowMenu] = useState(false);
+    const ulRef = useRef();
+
+    const openMenu = () => {
+      if (showMenu) return;
+      setShowMenu(true);
+    };
+
+    useEffect(() => {
+      if (!showMenu) return;
+
+      const closeMenu = (e) => {
+        if (!ulRef.current.contains(e.target)) {
+          setShowMenu(false);
+        }
+      };
+
+      document.addEventListener("click", closeMenu);
+
+      return () => document.removeEventListener("click", closeMenu);
+    }, [showMenu]);
+
+    const ulDropDown = "post-dropdown" + (showMenu ? "" : " hidden");
+    const closeMenu = () => setShowMenu(false);
+    //
 
     if (!post) return null
 
     else
         return (
             <div className='postTileHomePage' onClick={handleClick}>
+            <div className="eachPostTopDiv">
+            { users ?
+              users.map((eachUser) =>
+               eachUser.id == post.userId ?
+                <div className="usersName">{eachUser.firstname} {eachUser.lastname}</div> : null
+              )
+             : null
+            }
+            <div className="dropdownButton" onClick={openMenu}>...
+
+            <div className={ulDropDown} ref={ulRef}>
                 {user && user.id == post.userId ?
-                    <div>
+
                     <OpenModalButton
                     className='button'
 			        buttonText="Edit Post"
-			        modalComponent={<EditPostFormModal post={post}/>}
+                    onButtonClick={closeMenu}
+			        modalComponent={<EditPostFormModal post={post} user={user}/>}
 		        />
+
+                 : null
+                }
+                {user && user.id == post.userId ?
+
                 <OpenModalButton
                     className='button'
 			        buttonText="Delete Post"
+                    onButtonClick={closeMenu}
 			        modalComponent={<DeletePostModal post={post}/>}
 		        />
-                </div>
+
+
                  : null}
+                 </div>
+             </div>
+             </div>
                 <div className='postStatusDiv'>
                     {post.status}
                 </div>
@@ -61,14 +99,16 @@ function EachPost({ post }) {
                 <img src={post.upload}/>
                 }
                 </div>
+                <div className="divToFloat">
                 <div className="commentCount">
-                    This is the comment count: {post.commentCount}
+                    {post.commentCount} Comment(s)
+                </div>
                 </div>
                 <OpenModalButton
                     className='comments'
-			        buttonText="Comment"
-			        modalComponent={<PostModal post={post}/>}
-		        />
+			             buttonText="Comment"
+			              modalComponent={<PostModal post={post} users={users}/>}
+		            />
             </div>
         )
 }

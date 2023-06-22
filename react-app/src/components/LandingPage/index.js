@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormPage from '../LoginFormPage';
 import SignupFormModal from '../SignupFormModal';
-// import './Landingpage.css';
+import './LandingPage.css';
 import { useHistory } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
 import { login } from "../../store/session";
@@ -48,7 +48,6 @@ function LandingPage() {
 		/>
 	  </div>
     <div className="demo-button">
-    Regular Demo User:
       <button type="submit"
          onClick={handleDemoSubmit}>Demo User Login</button>
       </div>

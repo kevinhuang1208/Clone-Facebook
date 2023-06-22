@@ -13,11 +13,6 @@
   /* z-index: 900; */
 }
 
-.profile-dropdown {
-  position: absolute;
-  /* z-index: 900; */
-}
-
 .hidden {
   display: none;
 }
@@ -28,4 +23,19 @@ ul > li {
 
 ul > li > a > img {
   width: 120px;
+}
+
+.logoutButton > button {
+  border: none;
+  color: red;
+  font-size: 18px;
+  background-color: white;
+}
+
+.logoutButton > button:hover {
+  border: solid lightgray 1px;
+  color: red;
+  font-size: 18px;
+  background-color: white;
+  cursor: pointer;
 }

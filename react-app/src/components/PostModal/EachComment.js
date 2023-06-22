@@ -41,45 +41,46 @@ function EachComment({post, comment}) {
         await setShowDelete(!showDelete)
     }
     return (
-    <div>
-        <div>{comment.userFirstName} {comment.userLastName}</div>
+    <div className="wholeEachComment">
+        <div className="namesEachComment">{comment.userFirstName} {comment.userLastName}</div>
         {/* <div className="description-div">{comment.description}</div> */}
 
         {user.id === comment.userId ?
          <div>
             { showResults ?
 
-            <div>
-            <form onSubmit={handleSubmit}>
-            <input
-                placeholder={comment.description}
-                type="text"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-            />
-            <button disabled={!description}>Change your comment</button>
+            <div className="editCommentDiv">
+            <form onSubmit={handleSubmit} id="editCommentForm">
+                <input
+                    placeholder={comment.description}
+                    type="text"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                />
+                <button className="editCommentButton" disabled={!description}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png"/></button>
             </form>
             <button onClick={onClick}>I change my mind</button>
             </div>
              : <>{comment.description}</> }
 
             { showDelete ?
-            <div>
-            <form onSubmit={handleClick}>
-            <div>Are you sure you want to delete this comment?</div>
+            <div className="deleteCommentSection">
+            <form onSubmit={handleClick} id="deleteCommentForm">
+            <div>*Are you sure you want to delete this comment?*</div>
             <button>Delete this comment</button>
             </form>
             <button onClick={onClickDelete}>I change my mind</button>
             </div>
              : <></> }
-
+            <div className="editAndDeleteButtonsComment">
             { !showResults ?
-            <button onClick={onClick}>Edit</button>
+            <button onClick={onClick} className="editACommentButton">Edit</button>
             : null }
 
             { !showDelete ?
-            <button onClick={onClickDelete}>Delete Comment</button>
+            <button onClick={onClickDelete} className="deleteACommentButton">Delete Comment</button>
             : null }
+            </div>
         </div>
         :
 

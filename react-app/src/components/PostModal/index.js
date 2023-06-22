@@ -12,14 +12,14 @@ import EditCommentModal from "../EditCommentModal";
 import EachComment from "./EachComment";
 
 
-function PostModal({ post }) {
+function PostModal({ post, users }) {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     // console.log("THIS IS POST", post)
     const posts = useSelector((state) => state.posts)
     // console.log("THIS IS STATE AND I WANNA EXTRACT DATA FROM IT", posts)
     // console.log("THIS IS POST ID", post.id)
-    console.log("THIS IS COMMENTS AT THE POST AT THE ID", posts[post.id].comments)
+    // console.log("THIS IS COMMENTS AT THE POST AT THE ID", posts[post.id].comments)
 
 
     const [description, setDescription] = useState("")
@@ -40,24 +40,18 @@ function PostModal({ post }) {
 
     else
         return (
-            <div className='postTileHomePage'>
-                {user.id == post.userId ?
-                    <div>
-                    <OpenModalButton
-                    className='button'
-			        buttonText="Edit Post"
-			        modalComponent={<EditPostFormModal key={post.id} post={post}/>}
-		        />
-                <OpenModalButton
-                    className='button'
-			        buttonText="Delete Post"
-			        modalComponent={<DeletePostModal key={post.id} post={post}/>}
-		        />
-                </div>
-                 : null}
+            <div className='postModalHomePage'>
+                { users ?
+                    users.map((eachUser) =>
+                        eachUser.id == post.userId ?
+                        <div className="postModalName">{eachUser.firstname} {eachUser.lastname}</div> : null
+                     )
+                : null
+                }
                 <div className='postStatusDiv'>
                     {post.status}
                 </div>
+                <div className="photoPostModal">
                 <div className="postUploadDiv">
                 {post.upload.substr(post.upload.length - 3) === "mp4" ?
                 <video width='680px' height = '400px' controls controlsList="nodownload">
@@ -67,8 +61,11 @@ function PostModal({ post }) {
                 <img src={post.upload}/>
                 }
                 </div>
-                <div className="commentCount">
-                    This is the comment count: {post.commentCount}
+                </div>
+                <div className="commentPostModal">
+                <div className="commentCountPostModal">
+                    Comments ▾
+                </div>
                 </div>
                 <div className="comments">
                 { posts[post.id].comments.map(comment => {
@@ -82,49 +79,7 @@ function PostModal({ post }) {
                 </div>
 
 
-                //     const handleSubmit = async (e) => {
-                //         e.preventDefault()
 
-                //         const formData = new FormData()
-                //         setSubmitted(true)
-                //         formData.append('description', description)
-                //         await dispatch(editPostCommentThunk(formData, post.id, comment.id))
-                //     }
-                //     const handleClick = async (e) => {
-                //         e.preventDefault();
-                //         await dispatch(deletePostCommentThunk(post.id, comment.id))
-                //       };
-                //     const onClick = async () => {
-                //         console.log("THIS IS INSIDE THE COMMENT MAP", comment.id)
-                //         await setDescription(comment.description)
-                //         await setShowResults(!showResults)
-                //     }
-                //     return (
-                //     <div>
-                //         <div>{comment.userFirstName} {comment.userLastName}</div>
-                //         {/* <div className="description-div">{comment.description}</div> */}
-
-                //         {user.id === comment.userId ?
-                //          <div>
-                //             { showResults ?
-                //             <form onSubmit={handleSubmit}>
-                //             <input
-                //                 placeholder={comment.description}
-                //                 type="text"
-                //                 value={description}
-                //                 onChange={(e) => setDescription(e.target.value)}
-                //             />
-                //             <button disabled={!description}>Change your comment</button>
-                //             </form>
-                //              : <>{comment.description}</> }
-                //             <button onClick={onClick}>Edit</button>
-                //             <button onClick={handleClick}>Delete Comment</button>
-                //         </div>
-                //         :
-
-                //         <>{comment.description}</>}
-                //     </div>
-                // )
         )
 }
 

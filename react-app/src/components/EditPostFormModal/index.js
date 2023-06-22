@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { useParams } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { getAllPostsThunk } from '../../store/posts';
-// import "./EpisodeForm.css"
+import "./EditPostFormModal.css"
 import { editPostThunk } from '../../store/posts';
 
 function useForceUpdate(){
@@ -15,7 +15,7 @@ function useForceUpdate(){
 }
 
 
-const EditPostFormModal = ({post}) => {
+const EditPostFormModal = ({post, user}) => {
     const history = useHistory()
     const dispatch = useDispatch()
     // const forceUpdate = useForceUpdate();
@@ -24,7 +24,7 @@ const EditPostFormModal = ({post}) => {
     const [upload, setUpload] = useState("")
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
-
+    // console.log("THIS IS THE USER OF THE POST", user)
     // const userId = useSelector(state => state.session.user)
     // const allPosts = useSelector(state => state.posts)
 
@@ -67,8 +67,11 @@ const EditPostFormModal = ({post}) => {
     }
 
     return (
-        <div className="createPostFormContainer">
-            <h1 className="formHeader">Edit Post</h1>
+        <div className="editPostFormContainer">
+            <div className='editHeaderWButton'>
+                <div className="xButton" onClick={closeModal}>✖</div>
+                <h1 className="editFormHeader">Edit Post</h1>
+            </div>
             {submitted ? (
                 <h2 className='post-form-loading'>Uploading... please wait</h2>
             ) : null}
@@ -76,23 +79,27 @@ const EditPostFormModal = ({post}) => {
                 <ul>
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul> : null}
-            <div>
+            <div className='editPostUserDetails'>
                 <div className='propic'></div>
-                <div className='fullname'>Kevin</div>
+                { user ?
+                    <div>{user.firstname} {user.lastname}</div> : null
+                }
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} id='editForm'>
 
-                <input
+                <textarea
+                    className='editFormTextArea'
                     placeholder="What's on your mind?"
                     type="text"
                     value={status}
                     onChange={(e) => setStatus(e.target.value)}
                 />
 
-                <div className='file-in-edit'>
+                <div className='fileInEdit'>
                     <p>
                         Current attachment below. Please upload another file if you would like to overwrite this attachment. <b>Please upload the same image if you don't wish to change it</b>
                     </p>
+                    <div className='fileSrcDiv'>
                     {post.upload.substr(post.upload.length - 3) === "mp4" ?
                         <video width='700px' height = '400px' controls controlsList="nodownload">
                             <source src = {post.upload} type= 'video/mp4'>
@@ -101,7 +108,8 @@ const EditPostFormModal = ({post}) => {
                         :
                         <img src={post.upload}/>
                     }
-                </div>
+                    </div>
+                <div className='filePostDiv'>
                 <label>
                     Edit your upload:
                     <input
@@ -111,9 +119,11 @@ const EditPostFormModal = ({post}) => {
                         filename={upload && upload.name}
                         // value={post.upload}
                         onChange={(e) => setUpload(e.target.files[0])}
-                    />
+                        />
                 </label>
+                </div>
                 <button disabled={submitted || !status || !upload}>Edit Post</button>
+                </div>
 
             </form>
 

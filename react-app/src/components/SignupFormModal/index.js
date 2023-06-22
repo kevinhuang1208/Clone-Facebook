@@ -80,62 +80,61 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
-			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
+		<div className="wholeSignUpContainer">
+			<div className="signUpTextContainer">
+				<div className="signUpText">
+				<h2>Sign Up</h2>
+				<p>It's quick and easy.</p>
+				</div>
+				<div className="xButton" onClick={closeModal}>✖</div>
+			</div>
+			<form onSubmit={handleSubmit} id="signUpForm">
 				<ul>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
-					Email
-					<input
-						type="text"
-						value={email}
-						onChange={(e) => setEmail(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					First Name
-					<input
-						type="text"
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Last Name
-					<input
-						type="text"
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Password
-					<input
-						type="password"
-						value={password}
-						onChange={(e) => setPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<label>
-					Confirm Password
-					<input
-						type="password"
-						value={confirmPassword}
-						onChange={(e) => setConfirmPassword(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit" disabled={!firstName || !lastName || !password || !confirmPassword || !email}>Sign Up</button>
+				<div className="nameFields">
+				<input className="nameInputs"
+					placeholder="First Name"
+					type="text"
+					value={firstName}
+					onChange={(e) => setFirstName(e.target.value)}
+					required
+				/>
+				<input className="nameInputs"
+					placeholder="Last Name"
+					type="text"
+					value={lastName}
+					onChange={(e) => setLastName(e.target.value)}
+					required
+				/>
+				</div>
+				<input className="signUpFormInputs"
+					placeholder="Email"
+					type="text"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
+					required
+				/>
+				<input className="signUpFormInputs"
+					placeholder="New Password"
+					type="password"
+					value={password}
+					onChange={(e) => setPassword(e.target.value)}
+					required
+				/>
+				<input className="signUpFormInputs"
+					placeholder="Confirm New Password"
+					type="password"
+					value={confirmPassword}
+					onChange={(e) => setConfirmPassword(e.target.value)}
+					required
+				/>
+				<div className="smallText">By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy.</div>
+				<button className='signUpButton' type="submit" disabled={!firstName || !lastName || !password || !confirmPassword || !email}>Sign Up</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

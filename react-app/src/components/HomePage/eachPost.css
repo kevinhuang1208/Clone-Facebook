@@ -1,6 +1,6 @@
 .postTileHomePage {
     width: 680px;
-    max-height: 831px;
+    max-height: 900px;
     margin-bottom: 50px;
     background-color: white;
     border-radius: 10px;
@@ -9,4 +9,85 @@
 .postUploadDiv > img {
     max-width: 680px;
     max-height: 625px;
+}
+
+
+.eachPostTopDiv {
+    position: relative;
+    width: 90%;
+    display: inline-block;
+    padding-top: 20px;
+    margin-bottom: 30px;
+}
+.dropdownButton {
+    cursor: pointer;
+    width: fit-content;
+    float: right;
+}
+
+.usersName {
+    float: left;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.post-dropdown {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    z-index: 2;
+    width: 240px;
+    border-radius: 10px;
+  }
+
+.post-dropdown > button {
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: white;
+    cursor: pointer;
+}
+
+.post-dropdown > button:hover {
+    background-color: lightgray;
+}
+
+.postStatusDiv {
+    text-align: left;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-left: 35px;
+    margin-bottom: 30px;
+}
+
+.divToFloat {
+    display: inline-block;
+    width: 90%;
+}
+
+.commentCount {
+    float: right;
+}
+
+.postTileHomePage > button {
+    border: solid lightgray 1px;
+    margin-bottom: 20px;
+    width: 220px;
+    height: 35px;
+    background-color: white;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.postTileHomePage > button:hover {
+    border: none;
+    margin-bottom: 20px;
+    width: 220px;
+    height: 35px;
+    background-color: lightgray;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
 }
