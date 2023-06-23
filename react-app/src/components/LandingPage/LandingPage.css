@@ -1,5 +1,6 @@
 .landingPageContainer {
     display: flex;
+    height: 80%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

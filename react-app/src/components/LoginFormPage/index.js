@@ -23,7 +23,7 @@ function LoginFormPage() {
 
   return (
     <div className="wholeLoginFormContainer">
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="loginForm">
         <ul>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
