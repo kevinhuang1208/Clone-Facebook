@@ -1,10 +1,15 @@
 /* TODO Add site wide styles */
 html {
     background-color: #f1f0f0;
+    height: 100%;
+}
 
+#root {
+    height: 100%;
 }
 
 body {
     margin: 0;
     font-family: 'Lora', serif;
+    height: 100%;
 }

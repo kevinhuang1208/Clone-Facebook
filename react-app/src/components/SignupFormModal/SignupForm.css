@@ -58,7 +58,7 @@
     height: 40px;
 }
 
-#signUpForm > .signUpButton {
+#signUpForm > .signUpButton:enabled {
     height: 40px;
     width: 200px;
     background-color: #42b72a;
@@ -70,6 +70,21 @@
     cursor: pointer;
 }
 
+#signUpForm > .signUpButton:disabled {
+    height: 40px;
+    width: 200px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 10px;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+}
+
 .smallText {
     font-size: 10px;
+}
+
+#signUpForm > ul > li {
+    color: red;
 }

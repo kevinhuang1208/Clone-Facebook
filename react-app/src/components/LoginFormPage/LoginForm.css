@@ -28,3 +28,7 @@ form > #formLogin {
     font-weight: bold;
     cursor: pointer;
 }
+
+#loginForm > ul > li {
+    color: red;
+}

@@ -7,6 +7,7 @@ import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import HomePage from "./components/HomePage";
+import Footer from "./components/Footer";
 
 //<form action="/posts/new" method="POST" enctype="multipart/form-data">
 // THIS WILL NEED TO BE ON THE FORM
@@ -37,41 +38,9 @@ function App() {
             <HomePage />
           </Route>
 
-          {/* <Route exact path="/anime">
-            <HomePage />
-          </Route>
-
-
-          <Route exact path='/anime/:animeId/episodes/new'>
-            <EpisodeForm />
-          </Route>
-
-          <Route exact path='/anime/:animeId/edit'>
-            <EditAnime />
-          </Route>
-
-          <Route exact path="/anime/:animeId">
-            <AnimeDetail />
-          </Route>
-
-          <Route path="/user/:userId" >
-            <ProfilePage />
-          </Route>
-
-          <Route path="/login" >
-            <LoginFormPage />
-          </Route>
-
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-
-          <Route exact path='/anime/:animeId/episodes/:episodeId'>
-            <EpisodeComponent />
-          </Route> */}
-
         </Switch>
       )}
+      <Footer/>
     </>
   );
 }
