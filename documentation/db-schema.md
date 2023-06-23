@@ -2,7 +2,7 @@
 
 ## Database Schema
 
-![Database Schema](https://cdn.discordapp.com/attachments/1117948168353628201/1118219548701757481/dbshema.PNG)
+![Database Schema](https://cdn.discordapp.com/attachments/1117948168353628201/1121818575833931857/image.png)
 
 
 ## Backend Routes
