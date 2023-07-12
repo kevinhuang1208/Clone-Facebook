@@ -36,3 +36,4 @@ class User(db.Model, UserMixin):
 
     post = db.relationship('Post', cascade="all,delete-orphan", back_populates = 'userid')
     comment = db.relationship('Comment', cascade="all,delete-orphan", back_populates = 'commentuserid')
+    message = db.relationship('Message', cascade="all,delete-orphan", back_populates = 'messageuserid')

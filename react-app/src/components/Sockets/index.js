@@ -1,16 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { io } from 'socket.io-client';
+import { getAllMessagesThunk } from "../../store/messages";
 import './Socket.css'
 let socket;
 
 const Chat = () => {
+    const dispatch = useDispatch()
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
-    const idOfClickedUser = useParams()
-    console.log("ID OF CLICKED USER", idOfClickedUser.sessionId)
+    // const idOfClickedUser = useParams()
+    // console.log("ID OF CLICKED USER", idOfClickedUser.sessionId)
+    const messagesObj = useSelector(state => state.messages)
+    const messagesArr = Object.values(messagesObj)
+    console.log("THESE ARE THE MESSAGE", messagesArr)
+
+    useEffect(() => {
+        dispatch(getAllMessagesThunk())
+      }, [dispatch])
+
     useEffect(() => {
         // open socket connection
         // create websocket
@@ -42,8 +52,13 @@ const Chat = () => {
     return (user && (
         <div className="wholeSocketDiv">
             <div className="messageLog">
+                {messagesArr.map((message) => (
+                    <div className="savedMsgs">
+                        <div className="personMessage">{message.userFirstName} {message.userLastName} ({message.createdAt})</div>
+                        <div className="messageItself">{message.message}</div>
+                    </div>
+                ))}
                 {messages.map((message, ind) => (
-
                     <div key={ind}>{`${message.firstName} ${message.lastName}: ${message.msg}`}</div>
                 ))}
             </div>
