@@ -54,12 +54,11 @@ const Chat = () => {
             <div className="messageLog">
                 {messagesArr.map((message) => (
                     <div className="savedMsgs">
-                        <div className="personMessage">{message.userFirstName} {message.userLastName} ({message.createdAt})</div>
-                        <div className="messageItself">{message.message}</div>
+                        <div className="personMessage">{message.userFirstName} {message.userLastName} ({message.createdAt}): {message.message}</div>
                     </div>
                 ))}
                 {messages.map((message, ind) => (
-                    <div key={ind}>{`${message.firstName} ${message.lastName}: ${message.msg}`}</div>
+                    <div key={ind}>{`${message.firstName} ${message.lastName} (${new Date()}): ${message.msg}`}</div>
                 ))}
             </div>
             <form id='webSocketForm' onSubmit={sendChat}>
