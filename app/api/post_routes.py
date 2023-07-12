@@ -83,7 +83,6 @@ def edit_post(id):
         post.status = form.data["status"]
         if len(aws_link) > 0:
             post.upload = aws_link
-        # print("THIS IS POST UPLOAD INSIDE ROUTES", post.upload)
         db.session.commit()
         edited_post = post.to_dict()
         return edited_post
@@ -106,7 +105,6 @@ def delete_post(id):
     else:
         return "Did not work."
 
-##### maybe
 @post_routes.route('/comments')
 @login_required
 def get_all_comments():
@@ -116,7 +114,6 @@ def get_all_comments():
     res = [comment.to_dict() for comment in all_comments]
 
     return {"comments": res}
-####
 
 @post_routes.route("/<int:id>/comments")
 def get_post_comments(id):

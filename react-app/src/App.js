@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import HomePage from "./components/HomePage";
 import Footer from "./components/Footer";
+import Chat from "./components/Sockets";
 
 //<form action="/posts/new" method="POST" enctype="multipart/form-data">
 // THIS WILL NEED TO BE ON THE FORM
@@ -24,11 +25,14 @@ function App() {
 
   return (
     <>
+      <div id='wholeApp'>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
 
-
+          <Route exact path='/chat'>
+            <Chat/>
+          </Route>
 
           <Route exact path='/landing'>
             <LandingPage />
@@ -38,8 +42,10 @@ function App() {
             <HomePage />
           </Route>
 
+
         </Switch>
       )}
+      </div>
       <Footer/>
     </>
   );

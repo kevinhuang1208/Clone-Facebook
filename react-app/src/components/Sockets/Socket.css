@@ -1,0 +1,42 @@
+.wholeSocketDiv {
+    position: absolute;
+    top: 25%;
+    left: 17%;
+    margin-top: -50px;
+    border: solid gray 2px;
+    border-radius: 25px;
+    padding: 10px;
+    /* margin-left: -50px; */
+    width: 60%;
+    height: 80%;
+}
+
+.messageLog {
+    height: 90%;
+    overflow-y: auto;
+}
+
+#webSocketForm{
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.webSocketButton {
+    width: 7%;
+    height: 50px;
+}
+#webSocketForm > input {
+    width: 90%;
+    height: 50px;
+    border-radius: 25px;
+}
+/*
+#webSocketForm{
+    bottom: 0;
+    position: absolute;
+}
+
+
+
+ */

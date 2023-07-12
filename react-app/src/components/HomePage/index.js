@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import OpenModalButton from '../OpenModalButton';
 import PostFormModal from '../PostFormModal';
@@ -7,6 +7,7 @@ import { getAllPostsThunk } from '../../store/posts';
 import EachPost from './eachPost';
 import "./HomePage.css"
 import { getAllUsersThunk } from '../../store/users';
+import Chat from '../Sockets';
 
 
 function HomePage() {
@@ -47,12 +48,12 @@ function HomePage() {
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>
           <div className='eachTab' onClick={comingSoon}>Home</div>
-          <div className='eachTab' onClick={comingSoon}>{user ? user.firstname: null} {user ? user.lastname: null }</div>
-          <div className='eachTab' onClick={comingSoon}>Watch</div>
-          <div className='eachTab' onClick={comingSoon}>Marketplace</div>
-          <div className='eachTab' onClick={comingSoon}>Gaming</div>
-          <div className='eachTab' onClick={comingSoon}>My Groups</div>
-          <div className='eachTab' onClick={comingSoon}>My Shortcuts</div>
+          <div className='eachTab' onClick={comingSoon}>
+            {user ? user.firstname: null} {user ? user.lastname: null }
+          </div>
+          <Link className='eachTab' to={'/chat'}>
+            Open Discussion
+          </Link>
         </div>
         <div className='main-section'>
             <div className='new-post'>
@@ -75,7 +76,7 @@ function HomePage() {
             <div className='rightSideBarTitle'>Users</div>
             { allUsers && user ? allUsers.map((eachUser) =>
               eachUser.id != user.id ?
-              <div className='eachUserTab' onClick={friendsComingSoon}>{eachUser.firstname} {eachUser.lastname}</div> : null
+              <div className='eachUserTab'>{eachUser.firstname} {eachUser.lastname}</div> : null
             )
             : null
             }

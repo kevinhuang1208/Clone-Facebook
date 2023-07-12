@@ -13,3 +13,8 @@ body {
     font-family: 'Lora', serif;
     height: 100%;
 }
+
+#wholeApp {
+    position: relative;
+    min-height: 85vh;
+}
