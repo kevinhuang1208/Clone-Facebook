@@ -12,7 +12,7 @@
 }
 
 .messageLog {
-    height: 75%;
+    height: 70%;
     overflow-y: auto;
 }
 
@@ -47,6 +47,8 @@
 .messageAboveMessageLog {
     border-bottom: solid gray 1px;
     /* font-style: italic; */
+    max-height: 15%;
+    overflow-y: auto;
     font-weight: bold;
 }
 

@@ -37,6 +37,10 @@ function HomePage() {
     dispatch(getAllUsersThunk())
   }, [dispatch])
 
+  const toChat = () => {
+    history.push("/chat")
+  }
+
   const postsArr = Object.values(posts)
   postsArr.reverse()
 
@@ -55,13 +59,13 @@ function HomePage() {
     return (
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>
-          <div className='eachTab' onClick={comingSoon}>Home</div>
+          <div className='eachTab'>Home</div>
           <div className='eachTab' onClick={comingSoon}>
             {user ? user.firstname: null} {user ? user.lastname: null }
           </div>
-          <Link className='eachTab' to={'/chat'}>
+          <div className='eachTab' onClick={toChat}>
             Open Discussion
-          </Link>
+          </div>
         </div>
         <div className='main-section'>
             <div className='new-post'>

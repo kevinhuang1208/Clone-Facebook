@@ -9,7 +9,7 @@
 
 .delete-modal-container > .deleteButton {
     cursor: pointer;
-    background-color: rgb(236, 2, 2);
+    background-color: rgb(233, 34, 34);
     box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
     border: none;
     height: 30px;
@@ -20,7 +20,7 @@
 
 .delete-modal-container > .dontDeleteButton {
     cursor: pointer;
-    background-color: #42b72a;
+    background-color: #1877f2;
     color: white;
     border: none;
     height: 30px;
