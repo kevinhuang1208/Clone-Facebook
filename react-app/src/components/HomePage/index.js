@@ -7,12 +7,14 @@ import { getAllPostsThunk } from '../../store/posts';
 import EachPost from './eachPost';
 import "./HomePage.css"
 import { getAllUsersThunk } from '../../store/users';
+import Load from '../Load';
 import Chat from '../Sockets';
 
 
 function HomePage() {
   const dispatch = useDispatch()
   const history = useHistory()
+  const [loaded, setLoaded] = useState(false)
   const posts = useSelector((state) => state.posts)
   const user = useSelector((state) => state.session.user)
   const allUsersObj = useSelector((state) => state.users)
@@ -31,7 +33,7 @@ function HomePage() {
   }
 
   useEffect(() => {
-    dispatch(getAllPostsThunk())
+    dispatch(getAllPostsThunk()).then(() => setLoaded(true))
     dispatch(getAllUsersThunk())
   }, [dispatch])
 
@@ -40,6 +42,12 @@ function HomePage() {
 
   if (!user) {
     history.push("/landing")
+  }
+
+  if (!loaded) {
+    return (
+      <Load />
+    )
   }
 
   if(!allUsers) return null;

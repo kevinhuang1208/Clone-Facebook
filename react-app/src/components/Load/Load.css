@@ -1,0 +1,11 @@
+
+.loading-container {
+    top: 5;
+    text-align: center;
+
+}
+
+.loading-gif {
+    border-radius: 60px;
+    /* height: 100%; */
+}
