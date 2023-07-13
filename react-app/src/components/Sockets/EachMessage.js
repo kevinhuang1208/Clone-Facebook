@@ -40,6 +40,11 @@ function EachMessage({message}) {
     const onClickDelete = async () => {
         await setShowDelete(!showDelete)
     }
+
+    const slicer = (date) => {
+        return date.slice(0, 16)
+    }
+
     return (
     <div className="wholeEachComment">
 
@@ -59,7 +64,7 @@ function EachMessage({message}) {
             </form>
             <button onClick={onClick}>I change my mind</button>
             </div>
-             : <>{message.userFirstName} {message.userLastName} ({message.createdAt}): {message.message}</> }
+             : <>{message.userFirstName} {message.userLastName} ({slicer(message.createdAt)}): {message.message}</> }
 
             { showDelete ?
             <div className="deleteCommentSection">

@@ -21,11 +21,15 @@ function Footer() {
             <div className='tech-icons-container'>
                 <img className='tech-icons' src="https://cdn.discordapp.com/attachments/1118303754714886259/1121552752133292133/JavaScript-logo.png" />
 
+                <img className='tech-icons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" />
+
                 <img className='tech-icons' src="https://cdn.discordapp.com/attachments/1118303754714886259/1121551916028153888/2300px-React-icon.png" />
 
                 <img className='tech-icons' src="https://cdn.discordapp.com/attachments/1118303754714886259/1121552416844824636/redux.png" />
 
-                <img className='tech-icons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" />
+                <img className='tech-icons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" />
+
+                <img className='tech-icons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" />
 
                 <img className='tech-icons' src="https://cdn.discordapp.com/attachments/1118303754714886259/1121551721282408529/postgresql-icon.png" />
 
@@ -33,7 +37,9 @@ function Footer() {
 
                 <img className='tech-icons' src="https://cdn.discordapp.com/attachments/1118303754714886259/1121557371194458202/css-512.png" />
 
-                <img className='tech-icons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sequelize/sequelize-original.svg" />
+                <img className='tech-icons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlalchemy/sqlalchemy-original.svg" />
+
+                <img className='tech-icons' src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/socketio/socketio-original.svg" />
             </div>
         </div>
     )
