@@ -1,8 +1,8 @@
 const GET_ALL_MESSAGES = "message/getAllMessages"
-// const GET_POST_COMMENTS = "post/getPostComments"
-// const POST_POST_COMMENT = "post/postComment"
-// const EDIT_POST_COMMENT = "post/editComment"
-// const DELETE_POST_COMMENT = "post/deleteComment"
+const GET_USER_MESSAGES = "message/getUserMessages"
+const POST_MESSAGE = "message/postMessage"
+const EDIT_MESSAGE = "message/editMessage"
+const DELETE_MESSAGE = "message/deleteMessage"
 
 const getAllMessages = (message) => {
     return {
@@ -27,96 +27,95 @@ export const getAllMessagesThunk = () => async (dispatch) => {
     }
     return null
 }
-// const postPostComment = (comment) => {
-//     return {
-//         type: POST_POST_COMMENT,
-//         payload: comment
-//     }
-// }
+const postMessage = (message) => {
+    return {
+        type: POST_MESSAGE,
+        payload: message
+    }
+}
 
-// export const postPostCommentThunk = (comment, postId) => async (dispatch) =>{
-//     const response = await fetch(`/api/posts/${postId}/comments/new`, {
-//         method: 'post',
-//         body: comment
-//     })
-//     const data = await response.json()
+export const postMessageThunk = (message) => async (dispatch) =>{
+    const response = await fetch('/api/messages/new', {
+        method: 'post',
+        body: message
+    })
+    const data = await response.json()
 
-//     if(response.ok){
-//         dispatch(postPostComment(data))
-//         dispatch(getAllPostsThunk())
-//         return data
-//     }
+    if(response.ok){
+        dispatch(postMessage(data))
+        return data
+    }
 
-//     return null
-// }
+    return null
+}
 
-// const editPostComment = (comment) => {
-//     return {
-//         type: EDIT_POST_COMMENT,
-//         payload: comment
-//     }
-// }
+const editMessage = (message) => {
+    return {
+        type: EDIT_MESSAGE,
+        payload: message
+    }
+}
 
-// export const editPostCommentThunk = (comment,postId,commentId) => async (dispatch) =>{
-//     const response = await fetch(`/api/posts/${postId}/comments/${commentId}`, {
-//         method: 'put',
-//         body: comment
-//     })
-//     const data = await response.json()
+export const editMessageThunk = (message, messageId) => async (dispatch) =>{
+    const response = await fetch(`/api/messages/${messageId}`, {
+        method: 'put',
+        body: message
+    })
+    const data = await response.json()
 
-//     if(response.ok){
-//         dispatch(editPostComment(data))
-//         dispatch(getAllPostsThunk())
-//         return data
-//     } else {
-//         return data
-//     }
-// }
+    if(response.ok){
+        dispatch(editMessage(data))
+        // dispatch(getAllMessagesThunk())
+        return data
+    } else {
+        return data
+    }
+}
 
-// const getPostComments = (comments) => {
-//     return {
-//         type: GET_POST_COMMENTS,
-//         payload: comments
-//     }
-// }
+const getUserMessages = (messages) => {
+    return {
+        type: GET_USER_MESSAGES,
+        payload: messages
+    }
+}
 
-// export const getPostCommentsThunk = (postId) => async (dispatch) =>{
+export const getUserMessagesThunk = (userId) => async (dispatch) =>{
 
-//     const response = await fetch(`/api/posts/${postId}/comments`)
-//     const data = await response.json()
+    const response = await fetch(`/api/messages/${userId}/messages`)
+    const data = await response.json()
 
-//     if(response.ok){
-//         const commentsObj = {}
+    if(response.ok){
+        const messagesObj = {}
 
-//         data.comments.forEach((comment) => {
-//             commentsObj[comment.id] = comment
-//         })
-//         dispatch(getPostComments(commentsObj))
-//         return commentsObj
-//     }
+        data.messages.forEach((message) => {
+            messagesObj[message.id] = message
+        })
+        dispatch(getUserMessages(messagesObj))
+        return messagesObj
+    }
 
-//     return null
-// }
+    return null
+}
 
-// const deletePostComment = (commentId) => {
-//     return{
-//         type: DELETE_POST_COMMENT,
-//         commentId
-//     }
+const deleteMessage = (messageId) => {
+    return{
+        type: DELETE_MESSAGE,
+        messageId
+    }
 
-// }
+}
 
-// export const deletePostCommentThunk = (postId, commentId) => async(dispatch)=>{
+export const deleteMessageThunk = (messageId) => async(dispatch)=>{
 
-//     const res = await fetch(`/api/posts/${postId}/comments/${commentId}/delete`,{
-//         method: 'DELETE'
-//     })
-//     if(res.ok){
-//         dispatch(deletePostComment(commentId))
-//         dispatch(getAllPostsThunk())
-//     }
-//     return null
-// }
+    const res = await fetch(`/api/messages/${messageId}/delete`,{
+        method: 'DELETE'
+    })
+    if(res.ok){
+        dispatch(deleteMessage(messageId))
+        // dispatch(getAllMessagesThunk())
+    }
+    return null
+}
 
 
 
@@ -137,26 +136,28 @@ const MessagesReducer = (state = initialState, action) => {
             newState = messagesState
             return newState
         }
-        // case GET_POST_COMMENTS:{
-        //     let newState = {}
-        //     newState = {...action.payload}
-        //     return newState
-        // }
-        // case POST_POST_COMMENT:{
-        //     let newState = {...state}
-        //     newState[action.payload.id] = action.payload
-        //     return newState
-        // }
-        // case EDIT_POST_COMMENT: {
-        //     let newState = { ...state }
-        //     newState[action.payload.id] = action.payload
-        //     return newState
-        // }
-        // case DELETE_POST_COMMENT:{
-        //     let newState={...state}
-        //     delete newState[action.commentId]
-        //     return newState
-        // }
+        case GET_USER_MESSAGES:{
+            let newState = {}
+            newState = {...action.payload}
+            return newState
+        }
+        case POST_MESSAGE:{
+            let newState = {...state}
+            newState[action.payload.id] = action.payload
+            return newState
+        }
+        case EDIT_MESSAGE: {
+            let newState = { ...state }
+            newState[action.payload.id] = action.payload
+            return newState
+        }
+        case DELETE_MESSAGE:{
+            let newState={...state}
+            delete newState[action.messageId]
+            return newState
+        }
+        case 'RESET_STATE':
+            return initialState;
         default:
             return state
     }

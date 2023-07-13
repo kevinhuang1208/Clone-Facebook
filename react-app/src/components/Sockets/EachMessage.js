@@ -4,18 +4,17 @@ import { useSelector, useDispatch } from "react-redux";
 import OpenModalButton from "../OpenModalButton";
 import EditPostFormModal from "../EditPostFormModal";
 import DeletePostModal from "../DeletePostModal";
-import './PostModal.css'
-import CommentComponent from "./CommentComponent";
 import { editPostCommentThunk, getPostCommentsThunk, deletePostCommentThunk } from "../../store/comments";
+import { editMessageThunk, deleteMessageThunk } from "../../store/messages";
 import { getAllPostsThunk } from "../../store/posts";
 import EditCommentModal from "../EditCommentModal";
 
 
-function EachComment({post, comment}) {
+function EachMessage({message}) {
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.session.user)
+    // const user = useSelector((state) => state.session.user)
 
-    const [description, setDescription] = useState("")
+    const [stateMessage, setStateMessage] = useState("")
     const [showResults, setShowResults] = useState(false)
     const [showDelete, setShowDelete] = useState(false)
     const [submitted, setSubmitted] = useState(false)
@@ -25,17 +24,17 @@ function EachComment({post, comment}) {
 
         const formData = new FormData()
         setSubmitted(true)
-        formData.append('description', description)
-        await dispatch(editPostCommentThunk(formData, post.id, comment.id))
+        formData.append('message', stateMessage)
+        await dispatch(editMessageThunk(formData, message.id))
         await setShowResults(!showResults)
     }
     const handleClick = async (e) => {
         e.preventDefault();
-        await dispatch(deletePostCommentThunk(post.id, comment.id))
+        await dispatch(deleteMessageThunk(message.id))
         await setShowDelete(!showDelete)
       };
     const onClick = async () => {
-        await setDescription(comment.description)
+        await setStateMessage(message.message)
         await setShowResults(!showResults)
     }
     const onClickDelete = async () => {
@@ -43,32 +42,30 @@ function EachComment({post, comment}) {
     }
     return (
     <div className="wholeEachComment">
-        <div className="namesEachComment">{comment.userFirstName} {comment.userLastName}</div>
-        {/* <div className="description-div">{comment.description}</div> */}
 
-        {user.id === comment.userId ?
+
          <div>
             { showResults ?
 
             <div className="editCommentDiv">
             <form onSubmit={handleSubmit} id="editCommentForm">
                 <input
-                    placeholder={comment.description}
+                    placeholder={message.message}
                     type="text"
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
+                    value={stateMessage}
+                    onChange={(e) => setStateMessage(e.target.value)}
                 />
-                <button className="editCommentButton" disabled={!description}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png"/></button>
+                <button className="editCommentButton" disabled={!stateMessage}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png"/></button>
             </form>
             <button onClick={onClick}>I change my mind</button>
             </div>
-             : <>{comment.description}</> }
+             : <>{message.userFirstName} {message.userLastName} ({message.createdAt}): {message.message}</> }
 
             { showDelete ?
             <div className="deleteCommentSection">
             <form onSubmit={handleClick} id="deleteCommentForm">
-            <div>*Are you sure you want to delete this comment?*</div>
-            <button>Delete this comment</button>
+            <div>*Are you sure you want to delete this message?*</div>
+            <button>Delete this Message</button>
             </form>
             <button onClick={onClickDelete}>I change my mind</button>
             </div>
@@ -79,15 +76,12 @@ function EachComment({post, comment}) {
             : null }
 
             { !showDelete ?
-            <button onClick={onClickDelete} className="deleteACommentButton">Delete Comment</button>
+            <button onClick={onClickDelete} className="deleteACommentButton">Delete Message</button>
             : null }
             </div>
         </div>
-        :
-
-        <>{comment.description}</>}
     </div>
 )
 }
 
-export default EachComment;
+export default EachMessage;

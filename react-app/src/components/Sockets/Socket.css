@@ -12,7 +12,7 @@
 }
 
 .messageLog {
-    height: 90%;
+    height: 75%;
     overflow-y: auto;
 }
 
@@ -22,21 +22,72 @@
     flex-wrap: nowrap;
 }
 
-.webSocketButton {
+.webSocketButton:enabled {
+    width: 7%;
+    height: 50px;
+    cursor: pointer;
+}
+
+.webSocketButton:disabled {
     width: 7%;
     height: 50px;
 }
+
+.webSocketButton > img {
+    width: 100%;
+}
+
 #webSocketForm > input {
     width: 90%;
     height: 50px;
     border-radius: 25px;
-}
-/*
-#webSocketForm{
-    bottom: 0;
-    position: absolute;
+    border: lightgray solid 1px;
 }
 
+.messageAboveMessageLog {
+    border-bottom: solid gray 1px;
+    /* font-style: italic; */
+    font-weight: bold;
+}
 
+.myLogsDiv {
+    border: black 2px solid;
+    border-radius: 10px;
+    padding: 25px;
+}
 
- */
+.myLogsDiv > h1, .chatLogDiv > h1 {
+    border-bottom: gray 1px solid;
+    text-align: center;
+}
+
+.messageMyLog {
+    overflow-y: auto;
+    max-height: 340px;
+    max-width: 600px;
+    min-width: 400px;
+    min-height: 200px;
+}
+
+.chatLogDiv {
+    border: black 2px solid;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.chatLog {
+    overflow-y: auto;
+    max-height: 340px;
+    max-width: 600px;
+    min-width: 400px;
+    min-height: 200px;
+}
+
+.wholeSocketDiv > button {
+    background-color: #1877f2;
+    color: white;
+    border-radius: 10px;
+    font-size: 20px;
+    border: none;
+    cursor: pointer;
+}
