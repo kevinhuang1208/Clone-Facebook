@@ -2,7 +2,7 @@
 
 ## Database Schema
 
-![Database Schema](https://cdn.discordapp.com/attachments/1117948168353628201/1121818575833931857/image.png)
+![Database Schema](https://cdn.discordapp.com/attachments/1117948168353628201/1129194488678596719/image.png)
 
 
 ## Backend Routes
@@ -58,3 +58,20 @@
 
 `DELETE /api/posts/:id/comments/:id`
 * Deletes a comment
+
+### Messages
+
+`GET /api/messages`
+* Returns all messages
+
+`GET /api/messages/:userid/messages`
+* Returns all messages associated with a user
+
+`POST /api/messages/new`
+* Creates a new message
+
+`PUT /api/messages/:id`
+* Edits the information for one message
+
+`DELETE /api/messages/:id/delete`
+* Deletes a message

@@ -1,6 +1,6 @@
 # MVP Feature List
 
-FaceQuote, a social media app, is a website for users to share posts, see other users posts, and interact with the community by liking and commenting.
+FaceQuote, a social media app, is a website for users to share posts, see other users posts, and interact with the community by posting, commenting and messaging.
 
 ## 0. New account creation, log in, log out, and guest/demo login
 * Users can sign up, log in, and log out.
@@ -19,11 +19,12 @@ FaceQuote, a social media app, is a website for users to share posts, see other 
 * Logged in users can edit and delete their own comments.
 * All users can view the comments on a post
 
-# Future Features
 ## 3. Messages
 * Logged in users can message other users via Websockets
 * Logged in users can edit the message they've sent.
 * Logged in users can delete the message they've sent if they made a mistake.
+
+# Future Features
 
 ## 4. Friends
 * Logged in users can friend and unfriend other users.
