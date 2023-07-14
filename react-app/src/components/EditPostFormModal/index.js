@@ -1,51 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useParams } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { getAllPostsThunk } from '../../store/posts';
 import "./EditPostFormModal.css"
 import { editPostThunk } from '../../store/posts';
 
-function useForceUpdate(){
-    const [value, setValue] = useState(0); // integer state
-    return () => setValue(value => value + 1); // update state to force render
-    // A function that increment the previous state like here
-    // is better than directly setting `setValue(value + 1)`
-}
-
-
 const EditPostFormModal = ({post, user}) => {
     const history = useHistory()
     const dispatch = useDispatch()
-    // const forceUpdate = useForceUpdate();
     const { closeModal } = useModal();
     const [status, setStatus] = useState(post?.status)
     const [upload, setUpload] = useState("")
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
-    // console.log("THIS IS THE USER OF THE POST", user)
-    // const userId = useSelector(state => state.session.user)
-    // const allPosts = useSelector(state => state.posts)
-
-    // console.log("THIS IS POST UPLOAD", post.upload)
 
     useEffect(() => {
         dispatch(getAllPostsThunk())
     }, [dispatch])
 
-    const formValidate = () => {
-        const newFormErrors = {}
-        if (!status || status.length > 1000) {
-            newFormErrors.status = "You MUST have a status and it must be less than 1000 characters long."
-        }
-        if (!upload) {
-            newFormErrors.upload = "You MUST have an upload to your post."
-        }
-        if (Object.values(newFormErrors).length > 0) {
-            setErrors(newFormErrors)
-        }
-    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -117,7 +91,6 @@ const EditPostFormModal = ({post, user}) => {
                         type="file"
                         accept='.png, .jpg, .jpeg, .gif, .mp4, .mov'
                         filename={upload && upload.name}
-                        // value={post.upload}
                         onChange={(e) => setUpload(e.target.files[0])}
                         />
                 </label>

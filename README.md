@@ -1,10 +1,12 @@
 # FaceQuote
 
-This is our full-stack capstone project reflecting what we have learned over the course of the program. FaceQuote (https://facequote.onrender.com/), a replicate site of Facebook (https://www.facebook.com/), is a project that encorporates the backend (databases, servers, routes) as well as the frontend (user/client side). Various technologies were used to help us achieve the site (listed below).
+FaceQuote (https://facequote.onrender.com/) is a full-stack project inspired by Facebook. FaceQuote is a site which entails features that allow registered users to post their favorite quotes, comment on others' posts, and a live chat for all users to discuss and enjoy their favorite quotes.
 
 ## Technologies
 
-Technologies used were Javascript, REACT, Redux, Amazon Web Services, Python, Flask, SQLAlchemy , and PostgreSQL.
+<img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E" /><img src="https://img.shields.io/badge/Python-darkblue?style=for-the-badge&logo=python&logoColor=yellow"/><img src="https://img.shields.io/badge/Flask-white?style=for-the-badge&logo=flask&logoColor=black
+" /><img src="https://img.shields.io/badge/SQLAlchemy-maroon?style=for-the-badge&logoColor=black"><img src="https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white" /><img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" /><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" /><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" /><img src="https://img.shields.io/badge/Redux-593D88?style=for-the-badge&logo=redux&logoColor=white" /><img src='https://img.shields.io/badge/Amazon%20Web%20Services-yellow?style=for-the-badge&logoColor=black
+'/><img src='https://img.shields.io/badge/SocketIo-black?style=for-the-badge&logo=socketio&logoColor=white'/>
 
 ## Landing Page
 
@@ -13,6 +15,18 @@ Technologies used were Javascript, REACT, Redux, Amazon Web Services, Python, Fl
 ## Home Page
 
 ![readme-example-2](https://cdn.discordapp.com/attachments/1117948168353628201/1121820323503947816/image.png)
+
+## Making a Post
+
+![Screenshot](/documentation/gifs/PostingPost.gif)
+
+## Posting a Comment
+
+![Screenshot](/documentation/gifs/PostingComment.gif)
+
+## Open Discussion
+
+![Screenshot](/documentation/gifs/OpenDiscussion.gif)
 
 ## Launching the App Locally
 
@@ -64,6 +78,26 @@ Technologies used were Javascript, REACT, Redux, Amazon Web Services, Python, Fl
 
 There is also a live site for you to test the features at https://facequote.onrender.com/
 
+# Features
+
+## Posts
+Logged-in Users:
+* Users can create a Post
+* Users can update their Post
+* Users can delete their Post
+* Users can view each Post
+
+## Comments
+Logged-in Users:
+* Users can post Comments on Posts
+* Users can delete their Comments on a Post
+* Users can view Comments on each Post
+
+## Messages
+Logged-in Users:
+* Users can post Messages on a live chat.
+* Users can read/update/delete their Messages via "My Logs" modal
+* Users can read the chat history via "Chat Log" modal
 
 
 ## Contributors:

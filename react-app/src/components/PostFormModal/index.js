@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
-import { useParams } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { getAllPostsThunk } from '../../store/posts';
 import "./PostFormModal.css"
@@ -17,25 +16,10 @@ const PostFormModal = ({user}) => {
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 
-    // const userId = useSelector(state => state.session.user)
-    // const allPosts = useSelector(state => state.posts)
-
     useEffect(() => {
         dispatch(getAllPostsThunk())
     }, [dispatch])
 
-    const formValidate = () => {
-        const newFormErrors = {}
-        if (!status || status.length > 1000) {
-            newFormErrors.status = "You MUST have a status and it must be less than 1000 characters long."
-        }
-        if (!upload) {
-            newFormErrors.upload = "You MUST have an upload to your post."
-        }
-        if (Object.values(newFormErrors).length > 0) {
-            setErrors(newFormErrors)
-        }
-    }
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -54,7 +38,6 @@ const PostFormModal = ({user}) => {
         }
 
     }
-    // console.log("THIS IS USER IN POST FORM", user.firstname)
 
     return (
         <div className="createPostFormContainer">
