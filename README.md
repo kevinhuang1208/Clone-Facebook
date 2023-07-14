@@ -18,9 +18,15 @@ FaceQuote (https://facequote.onrender.com/) is a full-stack project inspired by 
 
 ## Making a Post
 
+![Screenshot](/documentation/gifs/PostingPost.gif)
+
 ## Posting a Comment
 
+![Screenshot](/documentation/gifs/PostingComment.gif)
+
 ## Open Discussion
+
+![Screenshot](/documentation/gifs/OpenDiscussion.gif)
 
 ## Launching the App Locally
 
