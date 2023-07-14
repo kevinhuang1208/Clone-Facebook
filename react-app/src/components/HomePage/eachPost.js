@@ -10,18 +10,13 @@ import PostModal from "../PostModal";
 
 function EachPost({ post, users }) {
     const history = useHistory();
-
     const user = useSelector((state) => state.session.user)
+    const [showMenu, setShowMenu] = useState(false);
+    const ulRef = useRef();
 
-    // console.log("THIS IS ALL USERS", users)
-    // console.log("THIS IS EACH POST", post)
     const handleClick = () => {
         history.push(`/`)
     }
-
-    //
-    const [showMenu, setShowMenu] = useState(false);
-    const ulRef = useRef();
 
     const openMenu = () => {
       if (showMenu) return;
@@ -44,7 +39,6 @@ function EachPost({ post, users }) {
 
     const ulDropDown = "post-dropdown" + (showMenu ? "" : " hidden");
     const closeMenu = () => setShowMenu(false);
-    //
 
     if (!post) return null
 

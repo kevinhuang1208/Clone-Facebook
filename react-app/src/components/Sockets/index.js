@@ -15,30 +15,13 @@ const Chat = () => {
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
-    // const idOfClickedUser = useParams()
-    // console.log("ID OF CLICKED USER", idOfClickedUser.sessionId)
     const messagesObj = useSelector(state => state.messages)
     const messagesArr = Object.values(messagesObj)
-    console.log("THESE ARE THE MESSAGE", messagesArr)
-
-    // useEffect(() => {
-    //     dispatch(getAllMessagesThunk())
-    //   }, [dispatch])
-    // let usersMessages;
-
-    // const onlyUsersMessages = () => {
-    //     messagesArr.map((message)=> {
-    //         if (user.id == message.userId)
-    //     })
-    // }
 
     useEffect(() => {
         // open socket connection
         // create websocket
         socket = io();
-        // console.log("THIS IS SOCKET ROOM", request)
-
-
         socket.on("chat", (chat) => {
             setMessages(messages => [...messages, chat])
         })
@@ -58,11 +41,9 @@ const Chat = () => {
         const formData = new FormData()
         formData.append('message', chatInput)
         dispatch(postMessageThunk(formData))
-        // socket.emit('join', { 'channel': channel });
-        // socket.emit('send message', {'message': message, 'channel': channel});
         setChatInput("")
     }
-    // dispatch(getAllMessagesThunk())
+    
     if (!user) {
         history.push("/landing")
       }

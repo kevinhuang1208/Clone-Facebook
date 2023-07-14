@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
 import { getAllMessagesThunk, getUserMessagesThunk } from "../../store/messages";
 import EachMessage from "./EachMessage";
 import Load from "../Load";
@@ -11,7 +10,6 @@ const MyLog = () => {
     const user = useSelector(state => state.session.user)
     const messagesObj = useSelector(state => state.messages)
     const messagesArr = Object.values(messagesObj)
-    console.log("THESE ARE THE MESSAGE", messagesObj)
 
     useEffect(() => {
         dispatch(getUserMessagesThunk(user.id)).then(() => setLoaded(true))

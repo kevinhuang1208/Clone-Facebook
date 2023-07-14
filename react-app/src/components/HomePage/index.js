@@ -8,7 +8,6 @@ import EachPost from './eachPost';
 import "./HomePage.css"
 import { getAllUsersThunk } from '../../store/users';
 import Load from '../Load';
-import Chat from '../Sockets';
 
 
 function HomePage() {
@@ -19,17 +18,11 @@ function HomePage() {
   const user = useSelector((state) => state.session.user)
   const allUsersObj = useSelector((state) => state.users)
   const allUsers = Object.values(allUsersObj)
-  // console.log("THIS IS POSTS", posts)
-  // console.log("THIS IS USERS", allUsers)
+
 
   const comingSoon = (e) => {
     e.preventDefault();
     return alert("Feature coming soon!")
-  }
-
-  const friendsComingSoon = (e) => {
-    e.preventDefault();
-    return alert("Friends Feature will be implemented soon!")
   }
 
   useEffect(() => {

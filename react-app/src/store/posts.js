@@ -1,5 +1,3 @@
-import { getAllCommentsThunk } from "./comments"
-
 const GET_ALL_POSTS = "posts/getAllPosts"
 const DELETE_POST = "posts/deletePost"
 const POST_POST = "posts/postPost"
@@ -28,10 +26,8 @@ export const editPostThunk = (postId, post) => async (dispatch) => {
     if (res.ok) {
         dispatch(editPost(edited_data))
         return edited_data
-        //this return will return the to_dict for the anime
     } else {
         return edited_data
-        //this return will return errors key with [] value
     }
 
 }
@@ -76,9 +72,7 @@ export const deletePostThunk = (postId) => async (dispatch) => {
 
 export const getAllPostsThunk = () => async (dispatch) => {
     const response = await fetch('/api/posts')
-    // console.log("THIS IS RESPONSE", response)
     const data = await response.json()
-    // console.log("THIS IS DATA", data)
 
     if (response.ok) {
         const normalPost = {}
@@ -86,8 +80,6 @@ export const getAllPostsThunk = () => async (dispatch) => {
             normalPost[e.id] = e
         })
         dispatch(getAllPosts(normalPost))
-        // dispatch(getAllCommentsThunk())
-
         return normalPost
     }
     return null

@@ -1,19 +1,12 @@
-import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import OpenModalButton from "../OpenModalButton";
-import EditPostFormModal from "../EditPostFormModal";
-import DeletePostModal from "../DeletePostModal";
-import { editPostCommentThunk, getPostCommentsThunk, deletePostCommentThunk } from "../../store/comments";
 import { editMessageThunk, deleteMessageThunk } from "../../store/messages";
-import { getAllPostsThunk } from "../../store/posts";
-import EditCommentModal from "../EditCommentModal";
+
+
 
 
 function EachMessage({message}) {
     const dispatch = useDispatch();
-    // const user = useSelector((state) => state.session.user)
-
     const [stateMessage, setStateMessage] = useState("")
     const [showResults, setShowResults] = useState(false)
     const [showDelete, setShowDelete] = useState(false)

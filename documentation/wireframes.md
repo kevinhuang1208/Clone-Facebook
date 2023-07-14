@@ -1,7 +1,6 @@
 # Wireframes
 
 ## Styling Choices
-- Font Family: to be determined
 - Buttons
    - will follow FaceBook Styles
 - Login/Sign Up Form
@@ -25,4 +24,3 @@
 
 ## Comment Read on Post Modal
 ![comment_R_fb](https://cdn.discordapp.com/attachments/1117948168353628201/1129211419259318452/image.png)
-

@@ -155,7 +155,6 @@ def post_post_comment(id):
 @post_routes.route("/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
 def edit_comment_route(post_id, comment_id):
     """Route to edit a comment"""
-    # user_id = current_user.id
     comment = Comment.query.get(comment_id)
     form = CommentForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -172,9 +171,7 @@ def edit_comment_route(post_id, comment_id):
 
 @post_routes.route('/<int:post_id>/comments/<int:comment_id>/delete',methods =['DELETE'])
 def delete_comment_route(post_id, comment_id):
-    # print('what is this even working')
     comment_to_delete = Comment.query.get(comment_id)
-    # print('------comment to delete------',comment_to_delete)
 
     if comment_to_delete is None:
         return {'message': 'Comment cannot be found'}

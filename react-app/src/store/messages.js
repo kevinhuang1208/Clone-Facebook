@@ -65,7 +65,6 @@ export const editMessageThunk = (message, messageId) => async (dispatch) =>{
 
     if(response.ok){
         dispatch(editMessage(data))
-        // dispatch(getAllMessagesThunk())
         return data
     } else {
         return data
@@ -112,7 +111,6 @@ export const deleteMessageThunk = (messageId) => async(dispatch)=>{
     })
     if(res.ok){
         dispatch(deleteMessage(messageId))
-        // dispatch(getAllMessagesThunk())
     }
     return null
 }

@@ -6,7 +6,6 @@
     border: solid gray 2px;
     border-radius: 25px;
     padding: 10px;
-    /* margin-left: -50px; */
     width: 60%;
     height: 80%;
 }
@@ -46,7 +45,6 @@
 
 .messageAboveMessageLog {
     border-bottom: solid gray 1px;
-    /* font-style: italic; */
     max-height: 15%;
     overflow-y: auto;
     font-weight: bold;

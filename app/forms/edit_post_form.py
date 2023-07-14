@@ -3,7 +3,6 @@ from wtforms import StringField, DateField, FileField
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField, FileAllowed,FileRequired
 from app.api.aws_helpers import ALLOWED_EXTENSIONS
-# from app.models import User
 
 
 class EditPostForm(FlaskForm):

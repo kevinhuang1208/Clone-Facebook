@@ -1,6 +1,4 @@
 from .db import db, add_prefix_for_prod, SCHEMA, environment
-# from .reviews import Reviews
-# from .episodes import Episodes
 from .user import User
 from .comments import Comment
 from datetime import date

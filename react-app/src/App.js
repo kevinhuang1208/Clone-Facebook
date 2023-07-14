@@ -10,9 +10,6 @@ import HomePage from "./components/HomePage";
 import Footer from "./components/Footer";
 import Chat from "./components/Sockets";
 
-//<form action="/posts/new" method="POST" enctype="multipart/form-data">
-// THIS WILL NEED TO BE ON THE FORM
-
 
 function App() {
   const dispatch = useDispatch();

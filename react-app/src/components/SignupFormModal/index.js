@@ -13,30 +13,13 @@ function SignupFormModal() {
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
-	//
+
 	const validEmail = new RegExp(
 		'^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$'
 	 );
 
-
-	// const [emailErr, setEmailErr] = useState(false);
-    // const validate = (email) => {
-    //   if (!validEmail.test(email)) {
-    //      setEmailErr(true);
-    //   }
-	// }
-   //
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// validate(email);
-		// if (emailErr) {
-		// 	setErrors([
-		// 		"Email must be formatted correctly"
-		// 	])
-		// 	setEmailErr(false)
-		// 	return
-		// }
 		if (!validEmail.test(email)) {
 			setErrors([
 				"Email must be in valid format!"
@@ -65,18 +48,6 @@ function SignupFormModal() {
 		await dispatch(signUp(firstName, lastName, email, password));
 		closeModal();
 
-		// if (password === confirmPassword) {
-		// 	const data = await dispatch(signUp(firstName, lastName, email, password));
-		// 	if (data) {
-		// 		setErrors(data);
-		// 	} else {
-		// 		closeModal();
-		// 	}
-		// } else {
-		// 	setErrors([
-		// 		"Confirm Password field must be the same as the Password field",
-		// 	]);
-		// }
 	};
 
 	return (

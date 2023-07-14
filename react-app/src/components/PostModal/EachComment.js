@@ -1,14 +1,7 @@
-import { useHistory } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import OpenModalButton from "../OpenModalButton";
-import EditPostFormModal from "../EditPostFormModal";
-import DeletePostModal from "../DeletePostModal";
 import './PostModal.css'
-import CommentComponent from "./CommentComponent";
 import { editPostCommentThunk, getPostCommentsThunk, deletePostCommentThunk } from "../../store/comments";
-import { getAllPostsThunk } from "../../store/posts";
-import EditCommentModal from "../EditCommentModal";
 
 
 function EachComment({post, comment}) {
@@ -44,7 +37,6 @@ function EachComment({post, comment}) {
     return (
     <div className="wholeEachComment">
         <div className="namesEachComment">{comment.userFirstName} {comment.userLastName}</div>
-        {/* <div className="description-div">{comment.description}</div> */}
 
         {user.id === comment.userId ?
          <div>
