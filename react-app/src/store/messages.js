@@ -42,7 +42,7 @@ export const postMessageThunk = (message) => async (dispatch) =>{
     const data = await response.json()
 
     if(response.ok){
-        dispatch(postMessage(data))
+        await dispatch(postMessage(data))
         return data
     }
 
