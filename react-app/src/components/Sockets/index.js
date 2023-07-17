@@ -27,7 +27,9 @@ const Chat = () => {
         })
         // when component unmounts, disconnect
         return (() => {
-            socket.disconnect()
+            if (socket.readyState === 1) { // <-- This is important
+                socket.disconnect();
+            }
         })
     }, [])
 
@@ -43,7 +45,7 @@ const Chat = () => {
         dispatch(postMessageThunk(formData))
         setChatInput("")
     }
-    
+
     if (!user) {
         history.push("/landing")
       }
