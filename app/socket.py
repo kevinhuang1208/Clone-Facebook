@@ -5,7 +5,10 @@ from app.models.db import environment
 
 if environment == 'production':
     origins = [
-        "https://facequote.onrender.com/"
+        "https://facequote.onrender.com/",
+        "http://facequote.onrender.com/",
+        "https://facequote.onrender.com/chat",
+        "http://facequote.onrender.com/chat"
     ]
 else:
     origins = "*"
