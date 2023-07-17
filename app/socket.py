@@ -1,8 +1,9 @@
 from flask import request
 from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
+from app.models.db import environment
 
-if os.environ.get("FLASK_ENV") == "production":
+if environment == 'production':
     origins = [
         "https://facequote.onrender.com/"
     ]
@@ -22,4 +23,3 @@ users = {}
 @socketio.on("chat")
 def handle_chat(data):
         emit("chat", data, broadcast=True)
-
