@@ -38,12 +38,14 @@ export const postPostThunk = (post) => async (dispatch) => {
         method: "POST",
         body: post
     })
-    const data = await response.json()
+    const data = await response.json();
+
     if (response.ok) {
         dispatch(postPost(data))
         return data
     }
-    return data
+
+    return null
 }
 
 const deletePost = (postId) => {

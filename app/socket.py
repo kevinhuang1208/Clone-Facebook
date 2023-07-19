@@ -3,10 +3,7 @@ from flask_socketio import SocketIO, emit, join_room, leave_room
 import os
 from app.models.db import environment
 
-if environment == 'production':
-    origins = "*"
-else:
-    origins = "*"
+origins = "*"
 
 # create your SocketIO instance
 socketio = SocketIO(cors_allowed_origins=origins)

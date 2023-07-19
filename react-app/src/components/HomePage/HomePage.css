@@ -47,8 +47,7 @@
     height: 35px;
 }
 
-.left-sidebar > .eachTab:hover,
-.eachUserTab:hover {
+.left-sidebar > .eachTab:hover {
     background-color: lightgray;
     cursor: pointer;
     border-radius: 10px;
