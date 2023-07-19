@@ -11,7 +11,7 @@ function Navigation({ isLoaded }){
 		<ul className='nav-bar'>
 			<li>
 				<NavLink exact to="/">
-					<img src='https://cdn.discordapp.com/attachments/1117948168353628201/1118958833050587306/facequote-low-resolution-logo-color-on-transparent-background.png'/>
+					<img src='https://cdn.discordapp.com/attachments/1117948168353628201/1118958833050587306/facequote-low-resolution-logo-color-on-transparent-background.png' alt='FaceQuote'/>
 				</NavLink>
 			</li>
 			{isLoaded && (

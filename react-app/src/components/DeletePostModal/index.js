@@ -1,5 +1,3 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import { deletePostThunk, getAllPostsThunk } from "../../store/posts";
@@ -9,7 +7,6 @@ import "./DeletePostModal.css"
 const DeletePostModal = ({ post }) => {
   const dispatch = useDispatch()
   const { closeModal } = useModal();
-  const history = useHistory()
 
 
 

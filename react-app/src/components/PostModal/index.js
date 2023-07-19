@@ -1,11 +1,10 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import './PostModal.css'
 import CommentComponent from "./CommentComponent";
 import EachComment from "./EachComment";
 
 
 function PostModal({ post, users }) {
-    const dispatch = useDispatch();
     const user = useSelector((state) => state.session.user)
     const posts = useSelector((state) => state.posts)
 
@@ -17,7 +16,7 @@ function PostModal({ post, users }) {
             <div className='postModalHomePage'>
                 { users ?
                     users.map((eachUser) =>
-                        eachUser.id == post.userId ?
+                        eachUser.id === post.userId ?
                         <div className="postModalName">{eachUser.firstname} {eachUser.lastname}</div> : null
                      )
                 : null
@@ -32,7 +31,7 @@ function PostModal({ post, users }) {
                       <source src = {post.upload} type= 'video/mp4'>
                       </source>
                   </video> :
-                <img src={post.upload}/>
+                <img src={post.upload} alt="Post Upload"/>
                 }
                 </div>
                 </div>
@@ -44,11 +43,11 @@ function PostModal({ post, users }) {
                 <div className="comments">
                 { posts[post.id].comments.map(comment => {
                     return (
-                    <EachComment key={post.id} post={post} comment={comment}/>
+                    <EachComment post={post} comment={comment}/>
                     )
                 })}
 
-                    <CommentComponent key={post.id} post={post}/>
+                    <CommentComponent post={post}/>
                 </div>
                 </div>
 

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { useModal } from "../../context/Modal";
 import { getAllPostsThunk } from '../../store/posts';
 import "./EditPostFormModal.css"
 import { editPostThunk } from '../../store/posts';
 
 const EditPostFormModal = ({post, user}) => {
-    const history = useHistory()
     const dispatch = useDispatch()
     const { closeModal } = useModal();
     const [status, setStatus] = useState(post?.status)
@@ -80,7 +78,7 @@ const EditPostFormModal = ({post, user}) => {
                             </source>
                         </video>
                         :
-                        <img src={post.upload}/>
+                        <img src={post.upload} alt="Post Upload"/>
                     }
                     </div>
                 <div className='filePostDiv'>

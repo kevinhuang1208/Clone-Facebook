@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllMessagesThunk, postMessageThunk } from "../../store/messages";
+import { getAllMessagesThunk } from "../../store/messages";
 import Load from "../Load";
 
 const ChatLog = () => {

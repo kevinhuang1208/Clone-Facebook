@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { useModal } from "../../context/Modal";
 import { getAllPostsThunk } from '../../store/posts';
 import "./PostFormModal.css"
@@ -8,7 +7,6 @@ import { postPostThunk } from '../../store/posts';
 
 
 const PostFormModal = ({user}) => {
-    const history = useHistory()
     const dispatch = useDispatch()
     const { closeModal } = useModal();
     const [status, setStatus] = useState('')

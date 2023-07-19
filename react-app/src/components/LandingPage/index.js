@@ -1,33 +1,20 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import OpenModalButton from "../OpenModalButton";
 import LoginFormPage from '../LoginFormPage';
 import SignupFormModal from '../SignupFormModal';
 import './LandingPage.css';
-import { useHistory } from 'react-router-dom';
 import * as sessionActions from "../../store/session";
-import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 
 
 
 function LandingPage() {
-  // const sessionUser = useSelector(state => state.session.user);
 
-  //   openLoginModal = () =>{
-
-  //   }
-  const history = useHistory()
   const dispatch = useDispatch();
 
-//   }
 
-  const handleClick = (e) => {
-    e.preventDefault()
-    history.push('/')
 
-  }
+
 
   const handleDemoSubmit = async (e) => {
     e.preventDefault();

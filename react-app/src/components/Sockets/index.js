@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { io } from 'socket.io-client';
 import OpenModalButton from "../OpenModalButton";
-import { getAllMessagesThunk, postMessageThunk } from "../../store/messages";
+import { postMessageThunk } from "../../store/messages";
 import ChatLog from "./ChatLog";
 import MyLog from "./MyLog";
 import './Socket.css'
@@ -15,8 +15,8 @@ const Chat = () => {
     const [chatInput, setChatInput] = useState("");
     const [messages, setMessages] = useState([]);
     const user = useSelector(state => state.session.user)
-    const messagesObj = useSelector(state => state.messages)
-    const messagesArr = Object.values(messagesObj)
+    // const messagesObj = useSelector(state => state.messages)
+    // const messagesArr = Object.values(messagesObj)
 
     useEffect(() => {
         // open socket connection
@@ -76,7 +76,7 @@ const Chat = () => {
                     value={chatInput}
                     onChange={updateChatInput}
                 />
-                <button className="webSocketButton" disabled={!chatInput}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png"/></button>
+                <button className="webSocketButton" disabled={!chatInput}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png" alt="Websocket Button"/></button>
             </form>
         </div>
     )

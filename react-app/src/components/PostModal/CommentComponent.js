@@ -1,7 +1,6 @@
 import { useDispatch } from "react-redux"
-import React, {useState, useEffect} from "react"
-import { postPostCommentThunk, getPostCommentsThunk } from "../../store/comments"
-import { getAllPostsThunk } from "../../store/posts"
+import React, {useState} from "react"
+import { postPostCommentThunk } from "../../store/comments"
 import "./PostModal.css"
 
 
@@ -36,7 +35,7 @@ function CommentComponent({ post }) {
 
 
                     <div className='submitButtonCommentDiv'>
-                        <button className="submitButtonComment " disabled={description.length < 1}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png"/></button>
+                        <button className="submitButtonComment " disabled={description.length < 1}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png" alt="Submit Button"/></button>
                     </div>
                     </div>
             </form>

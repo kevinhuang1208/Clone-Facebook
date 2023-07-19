@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import './PostModal.css'
-import { editPostCommentThunk, getPostCommentsThunk, deletePostCommentThunk } from "../../store/comments";
+import { editPostCommentThunk, deletePostCommentThunk } from "../../store/comments";
 
 
 function EachComment({post, comment}) {
@@ -50,7 +50,7 @@ function EachComment({post, comment}) {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                 />
-                <button className="editCommentButton" disabled={!description}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png"/></button>
+                <button className="editCommentButton" disabled={!description}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png" alt="Edit Comment"/></button>
             </form>
             <button onClick={onClick}>I change my mind</button>
             </div>

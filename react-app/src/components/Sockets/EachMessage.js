@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { editMessageThunk, deleteMessageThunk } from "../../store/messages";
 
 
@@ -53,7 +53,7 @@ function EachMessage({message}) {
                     value={stateMessage}
                     onChange={(e) => setStateMessage(e.target.value)}
                 />
-                <button className="editCommentButton" disabled={!stateMessage}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png"/></button>
+                <button className="editCommentButton" disabled={!stateMessage}><img src="https://cdn.discordapp.com/attachments/1117948168353628201/1118964736483143772/facequote-website-favicon-color.png" alt="Edit Comment"/></button>
             </form>
             <button onClick={onClick}>I change my mind</button>
             </div>
