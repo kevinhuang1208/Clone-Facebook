@@ -1,5 +1,5 @@
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { useEffect, useState, useRef } from "react";
 import OpenModalButton from "../OpenModalButton";
 import EditPostFormModal from "../EditPostFormModal";
@@ -48,7 +48,7 @@ function EachPost({ post, users }) {
             <div className="eachPostTopDiv">
             { users ?
               users.map((eachUser) =>
-               eachUser.id == post.userId ?
+               eachUser.id === post.userId ?
                 <div className="usersName">{eachUser.firstname} {eachUser.lastname}</div> : null
               )
              : null
@@ -56,24 +56,24 @@ function EachPost({ post, users }) {
             <div className="dropdownButton" onClick={openMenu}>...
 
             <div className={ulDropDown} ref={ulRef}>
-                {user && user.id == post.userId ?
+                {user && user.id === post.userId ?
 
                     <OpenModalButton
                     className='button'
 			        buttonText="Edit Post"
                     onButtonClick={closeMenu}
-			        modalComponent={<EditPostFormModal post={post} user={user}/>}
+			        modalComponent={<EditPostFormModal key={post.id} post={post} user={user}/>}
 		        />
 
                  : null
                 }
-                {user && user.id == post.userId ?
+                {user && user.id === post.userId ?
 
                 <OpenModalButton
                     className='button'
 			        buttonText="Delete Post"
                     onButtonClick={closeMenu}
-			        modalComponent={<DeletePostModal post={post}/>}
+			        modalComponent={<DeletePostModal key={post.id} post={post}/>}
 		        />
 
 
@@ -90,7 +90,7 @@ function EachPost({ post, users }) {
                       <source src = {post.upload} type= 'video/mp4'>
                       </source>
                   </video> :
-                <img src={post.upload}/>
+                <img src={post.upload} alt="Post Upload"/>
                 }
                 </div>
                 <div className="divToFloat">
@@ -101,7 +101,7 @@ function EachPost({ post, users }) {
                 <OpenModalButton
                     className='comments'
 			             buttonText="Comment"
-			              modalComponent={<PostModal post={post} users={users}/>}
+			              modalComponent={<PostModal key={post.id} post={post} users={users}/>}
 		            />
             </div>
         )

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import OpenModalButton from '../OpenModalButton';
 import PostFormModal from '../PostFormModal';
@@ -66,13 +66,13 @@ function HomePage() {
                 <OpenModalButton
                     className='open-form'
                     buttonText= "What's on your mind?"
-                    modalComponent={<PostFormModal key={user} user={user}/>}
+                    modalComponent={<PostFormModal user={user}/>}
                 />
             </div>
             <div className = 'allPostsContainer'>
                 {
                     postsArr.map(post => (
-                    <EachPost key={post} post={post} users={allUsers}/>
+                    <EachPost post={post} users={allUsers}/>
                         ))
                 }
         </div>
@@ -80,7 +80,7 @@ function HomePage() {
         <div className='right-sidebar'>
             <div className='rightSideBarTitle'>Users</div>
             { allUsers && user ? allUsers.map((eachUser) =>
-              eachUser.id != user.id ?
+              eachUser.id !== user.id ?
               <div className='eachUserTab'>{eachUser.firstname} {eachUser.lastname}</div> : null
             )
             : null

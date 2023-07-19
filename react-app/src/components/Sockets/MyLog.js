@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getAllMessagesThunk, getUserMessagesThunk } from "../../store/messages";
+import { getUserMessagesThunk } from "../../store/messages";
 import EachMessage from "./EachMessage";
 import Load from "../Load";
 
