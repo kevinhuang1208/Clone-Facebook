@@ -34,7 +34,7 @@ export const editPostThunk = (postId, post) => async (dispatch) => {
 
 export const postPostThunk = (post) => async (dispatch) => {
 
-    const response = await fetch("/api/posts/new", {
+    const response = await fetch('/api/posts/new', {
         method: "POST",
         body: post
     })
