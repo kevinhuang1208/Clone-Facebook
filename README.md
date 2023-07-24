@@ -1,6 +1,6 @@
 # FaceQuote
 
-FaceQuote (https://facequote.onrender.com/) is a full-stack project inspired by Facebook. FaceQuote is a site which entails features that allow registered users to post their favorite quotes, comment on others' posts, and a live chat for all users to discuss and enjoy their favorite quotes.
+FaceQuote (https://facequote-ea434502c4e1.herokuapp.com/) is a full-stack project inspired by Facebook. FaceQuote is a site which entails features that allow registered users to post their favorite quotes, comment on others' posts, and a live chat for all users to discuss and enjoy their favorite quotes.
 
 ## Technologies
 
@@ -76,7 +76,7 @@ FaceQuote (https://facequote.onrender.com/) is a full-stack project inspired by 
 
 ## Live Site
 
-There is also a live site for you to test the features at https://facequote.onrender.com/
+There is also a live site for you to test the features at https://facequote-ea434502c4e1.herokuapp.com/
 
 # Features
 
