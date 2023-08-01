@@ -7,6 +7,7 @@ import LandingPage from "./components/LandingPage";
 import HomePage from "./components/HomePage";
 import Footer from "./components/Footer";
 import Chat from "./components/Sockets";
+import ProfilePage from "./components/ProfilePage";
 
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
           </Route>
 
           <Route exact path='/user/:userId'>
-            <LandingPage />
+            <ProfilePage />
           </Route>
 
           <Route exact path='/'>

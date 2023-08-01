@@ -20,10 +20,10 @@ function HomePage() {
   const allUsers = Object.values(allUsersObj)
 
 
-  const comingSoon = (e) => {
-    e.preventDefault();
-    return alert("Feature coming soon!")
-  }
+  // const comingSoon = (e) => {
+  //   e.preventDefault();
+  //   return alert("Feature coming soon!")
+  // }
 
   useEffect(() => {
     dispatch(getAllPostsThunk()).then(() => setLoaded(true))
@@ -57,7 +57,7 @@ function HomePage() {
       <div className = 'homePageDiv'>
         <div className='left-sidebar'>
           <div className='eachTab'>Home</div>
-          <div className='eachTab' onClick={comingSoon}>
+          <div className='eachTab' onClick={toProfile}>
             {user ? user.firstname: null} {user ? user.lastname: null }
           </div>
           <div className='eachTab' onClick={toChat}>
