@@ -98,11 +98,15 @@ function EachPost({ post, users }) {
                     {post.commentCount} Comment(s)
                 </div>
                 </div>
+                <div className="bottomSectionTile">
+                  <button>Like</button>
                 <OpenModalButton
                     className='comments'
 			             buttonText="Comment"
 			              modalComponent={<PostModal key={post.id} post={post} users={users}/>}
 		            />
+
+                </div>
             </div>
         )
 }

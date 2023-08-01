@@ -71,10 +71,10 @@
     float: right;
 }
 
-.postTileHomePage > button {
+.postTileHomePage > .bottomSectionTile > button {
     border: solid lightgray 1px;
     margin-bottom: 20px;
-    width: 40%;
+    width: 30%;
     height: 35px;
     background-color: white;
     font-size: 18px;
@@ -82,10 +82,10 @@
     cursor: pointer;
 }
 
-.postTileHomePage > button:hover {
+.postTileHomePage > .bottomSectionTile > button:hover {
     border: none;
     margin-bottom: 20px;
-    width: 40%;
+    width: 30%;
     height: 35px;
     background-color: lightgray;
     font-size: 18px;
