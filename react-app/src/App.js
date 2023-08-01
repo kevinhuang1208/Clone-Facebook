@@ -33,6 +33,10 @@ function App() {
             <LandingPage />
           </Route>
 
+          <Route exact path='/user/:userId'>
+            <LandingPage />
+          </Route>
+
           <Route exact path='/'>
             <HomePage />
           </Route>

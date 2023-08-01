@@ -34,6 +34,10 @@ function HomePage() {
     history.push("/chat")
   }
 
+  const toProfile = () => {
+    history.push(`/user/${user.id}`)
+  }
+
   const postsArr = Object.values(posts)
   postsArr.reverse()
 
