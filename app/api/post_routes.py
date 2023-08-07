@@ -177,8 +177,7 @@ def post_like(id):
     if form.validate_on_submit():
         new_like = Like(
             user_id=user_id,
-            post_id=post_id,
-            like=form.data["like"]
+            post_id=post_id
         )
         db.session.add(new_like)
         db.session.commit()
@@ -214,3 +213,16 @@ def delete_comment_route(post_id, comment_id):
     db.session.delete(comment_to_delete)
     db.session.commit()
     return {'message': 'Comment deleted!'}
+
+
+@post_routes.route('/<int:post_id>/likes/<int:like_id>/delete',methods =['DELETE'])
+def delete_like(post_id, like_id):
+    """This is deleting a like, WIP"""
+    like_to_delete = Like.query.get(like_id)
+
+    if like_to_delete is None:
+        return {'message': 'Like cannot be found'}
+
+    db.session.delete(like_to_delete)
+    db.session.commit()
+    return {'message': 'Like deleted!'}

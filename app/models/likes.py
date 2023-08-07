@@ -8,7 +8,6 @@ class Like(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key = True)
-    like = db.Column(db.Boolean, default = False)
     post_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('posts.id')), nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
 
@@ -21,7 +20,6 @@ class Like(db.Model):
 
         return {
             'id': self.id,
-            'like': self.like,
             'userFirstName': user.firstname,
             'userLastName': user.lastname,
             'postId': self.post_id,
