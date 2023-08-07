@@ -134,7 +134,7 @@ def get_post_comments(id):
 
 @post_routes.route("/<int:id>/likes")
 def get_post_likes(id):
-    """Route to get likes for a specific post"""
+    """Route to get likes for a specific post, WIP"""
 
     post_likes = Like.query.filter(Like.post_id == id).all()
     if post_likes:
@@ -167,7 +167,24 @@ def post_post_comment(id):
     else:
         return jsonify({'error': form.errors})
 
-
+@post_routes.route("/<int:id>/likes/new", methods=["POST"])
+def post_like(id):
+    """Route to like a post, WIP"""
+    user_id = current_user.id
+    post_id=id
+    form = LikeForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        new_like = Like(
+            user_id=user_id,
+            post_id=post_id,
+            like=form.data["like"]
+        )
+        db.session.add(new_like)
+        db.session.commit()
+        return new_like.to_dict()
+    else:
+        return jsonify({'error': form.errors})
 
 
 @post_routes.route("/<int:post_id>/comments/<int:comment_id>", methods=["PUT"])
