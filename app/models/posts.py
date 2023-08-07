@@ -44,5 +44,6 @@ class Post(db.Model):
             'upload': self.upload,
             'createdAt': self.created_at,
             'comments': comments,
-            'commentCount': comments_length
+            'commentCount': comments_length,
+            'likeCount': likes_length
         }
