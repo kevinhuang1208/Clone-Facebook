@@ -1,6 +1,7 @@
 from .db import db, add_prefix_for_prod, SCHEMA, environment
 from .user import User
 from .comments import Comment
+from .likes import Like
 from datetime import date
 
 class Post(db.Model):
@@ -25,6 +26,12 @@ class Post(db.Model):
         for comment in comments_search:
             comments.append(comment.to_dict())
         comments_length = len(comments)
+
+        likes_search = Like.query.filter_by(post_id = self.id).all()
+        likes = []
+        for like in likes_search:
+            likes.append(like.to_dict())
+        likes_length = len(likes)
 
         user = User.query.get(self.user_id)
 
