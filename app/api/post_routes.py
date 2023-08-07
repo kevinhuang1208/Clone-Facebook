@@ -4,8 +4,10 @@ from app.models import User
 from app.models.db import db
 from app.models.posts import Post
 from app.models.comments import Comment
+from app.models.likes import Like
 from app.forms.post_form import PostForm
 from app.forms.comment_form import CommentForm
+from app.forms.like_form import LikeForm
 from app.forms.edit_post_form import EditPostForm
 from app.api.auth_routes import validation_errors_to_error_messages
 from .aws_helpers import upload_file_to_s3, get_unique_filename, remove_file_from_s3
@@ -129,6 +131,22 @@ def get_post_comments(id):
         return {"comments": res}
     else:
         return {"comments": []}
+
+@post_routes.route("/<int:id>/likes")
+def get_post_likes(id):
+    """Route to get likes for a specific post"""
+
+    post_likes = Like.query.filter(Like.post_id == id).all()
+    if post_likes:
+        res = []
+        for like in post_likes:
+            likeDict = like.to_dict()
+            likeDict["user"] = like.likeuserid.to_dict()
+            res.append(likeDict)
+        return {"likes": res}
+    else:
+        return {"likes": []}
+
 
 @post_routes.route("/<int:id>/comments/new", methods=["POST"])
 def post_post_comment(id):
